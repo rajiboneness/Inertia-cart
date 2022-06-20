@@ -14,12 +14,12 @@
   <body>
     <main class="login">
       <div class="login__left">
-        <img src="{{ asset('admin/images/onn_outerwear.png') }}">
+        <img src="{{ asset('admin/images/corporate_gifts.jpg') }}">
       </div>
       <div class="login__right">
         <div class="login__block">
           <div class="logo__block">
-            <img src="{{ asset('admin/images/logo.png') }}">
+            <img src="{{ asset('../img/logo.png') }}">
           </div>
 
           @if (Session::get('success'))<div class="alert alert-success">{{ Session::get('success') }}</div>@endif

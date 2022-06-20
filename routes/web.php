@@ -19,7 +19,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Website
 Route::name('front.')->group(function(){
     Route::get('/', 'Front\FrontController@index')->name('home');
+
+
+
+    // Product details
+    Route::prefix('product')->name('product.')->group(function() {
+        Route::get('/', 'Front\ProductController@index')->name('list');
+        Route::get('/details', 'Front\ProductController@details')->name('details');
+    });
+    // Cart details
+    Route::prefix('cart')->name('cart.')->group(function() {
+        Route::get('/', 'Front\CartController@index')->name('index');
+    });
 });
+
+ 
 
 Auth::routes();
 

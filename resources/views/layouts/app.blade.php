@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="shortcut icon" href="{{ asset('./img/fav_icon.png') }}">
+        <link rel="shortcut icon" href="{{ asset('../img/fav_icon.png') }}">
         <title>Inertiacart | @yield('page')</title>
 
 		 <!--CSS-->
@@ -44,7 +44,7 @@
 						<a class="navbar-toggler" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 							<i data-feather="menu"></i>
 						  </a>
-						<a class="navbar-brand" href="index.html"><img src="./img/logo.png" width="195px"></a>
+						<a class="navbar-brand" href="{{ route('front.home') }}"><img src="../img/logo.png" width="195px"></a>
 						<div class="position-relative resp_hide w-50">
 							<input class="form-control d-none d-lg-block" type="search" placeholder="Search...">
 							<button class="btn btn_search"><i data-feather="search"></i></button>
@@ -54,7 +54,7 @@
 								<li><a href="javascript:void(0);"><i data-feather="phone"></i><span>+91 1234567890<small>call us to place an order</small></span></a></li>
 								<li><a href="javascript:void(0);"><i data-feather="user"></i> <span>Login / Signup</span></a></li>
 								<li class="resp_search"><a href="javascript:void(0);"><i data-feather="search"></i></a></li>
-								<li><a href="javascript:void(0);"><i data-feather="shopping-cart"></i><span class="order_count">02</span></a></li>
+								<li><a href="{{ route('front.cart.index') }}"><i data-feather="shopping-cart"></i><span class="order_count">02</span></a></li>
 
 								<div class="resp_search_input">
 									<input type="search" class="form-control" placeholder="search...">
@@ -62,150 +62,150 @@
 							</ul>
 						</div>
 					</div>
-						<div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-							<ul class="navbar-nav m-auto">
-								<li class="nav-item">
-									<a class="nav-link" aria-current="page" href="index.html">Single Products</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="javascript:void(0);">All Products</a>
-								</li>
-								<li class="nav-item dropdown has-megamenu">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Apparel & Clothes
-									</a>
-									<div class="dropdown-menu megamenu" role="menu">
-										<div class="row m-0">
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">T Shirts</a>
-												<ul>
-													<li><a href="javascript:void(0);">Basic</a></li>
-													<li><a href="javascript:void(0);">Classic</a></li>
-													<li><a href="javascript:void(0);">Polyester</a></li>
-												</ul>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Polos</a>
-												<ul>
-													<li><a href="javascript:void(0);">Basic</a></li>
-													<li><a href="javascript:void(0);">Classic</a></li>
-													<li><a href="javascript:void(0);">Polyester</a></li>
-												</ul>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Hoodies</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Jackets</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Kids T Shirts</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Jersey's</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Track Suit</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Uniform</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Formal Shirts</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Caps</a>
-											</div>
+					<div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+						<ul class="navbar-nav m-auto">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="{{ route('front.product.details') }}">Single Products</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ route('front.product.list') }}">All Products</a>
+							</li>
+							<li class="nav-item dropdown has-megamenu">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Apparel & Clothes
+								</a>
+								<div class="dropdown-menu megamenu" role="menu">
+									<div class="row m-0">
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">T Shirts</a>
+											<ul>
+												<li><a href="javascript:void(0);">Basic</a></li>
+												<li><a href="javascript:void(0);">Classic</a></li>
+												<li><a href="javascript:void(0);">Polyester</a></li>
+											</ul>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Polos</a>
+											<ul>
+												<li><a href="javascript:void(0);">Basic</a></li>
+												<li><a href="javascript:void(0);">Classic</a></li>
+												<li><a href="javascript:void(0);">Polyester</a></li>
+											</ul>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Hoodies</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Jackets</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Kids T Shirts</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Jersey's</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Track Suit</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Uniform</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Formal Shirts</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Caps</a>
 										</div>
 									</div>
-								</li>
+								</div>
+							</li>
 
-								<li class="nav-item dropdown has-megamenu">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Corporate Gifting
-									</a>
-									<div class="dropdown-menu megamenu" role="menu">
-										<div class="row m-0">
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">T Shirts</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Drinkware</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Coffee Mugs</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Note Books & Diaries</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Pen & Pencil</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Bags</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Key Chains</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Gift Set</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Trophies & Mementos</a>
-											</div>
+							<li class="nav-item dropdown has-megamenu">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Corporate Gifting
+								</a>
+								<div class="dropdown-menu megamenu" role="menu">
+									<div class="row m-0">
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">T Shirts</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Drinkware</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Coffee Mugs</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Note Books & Diaries</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Pen & Pencil</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Bags</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Key Chains</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Gift Set</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Trophies & Mementos</a>
 										</div>
 									</div>
-								</li>
-								<li class="nav-item dropdown has-megamenu">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Stationary
-									</a>
-									<div class="dropdown-menu megamenu" role="menu">
-										<div class="row m-0">
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Visiting Cards</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Brochures</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Pens</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Notebooks</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">ID Cards</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Diaries</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Certificates</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Luggage Tags</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Office Supplies</a>
-											</div>
-											<div class="col-12 col-lg-2 mega_sbmenu">
-												<a href="javascript:void(0);">Badges</a>
-											</div>
+								</div>
+							</li>
+							<li class="nav-item dropdown has-megamenu">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Stationary
+								</a>
+								<div class="dropdown-menu megamenu" role="menu">
+									<div class="row m-0">
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Visiting Cards</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Brochures</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Pens</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Notebooks</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">ID Cards</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Diaries</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Certificates</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Luggage Tags</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Office Supplies</a>
+										</div>
+										<div class="col-12 col-lg-2 mega_sbmenu">
+											<a href="javascript:void(0);">Badges</a>
 										</div>
 									</div>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="javascript:void(0);">Eco Friendly</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="javascript:void(0);">Branded Products</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="javascript:void(0);">Promotional Products</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="javascript:void(0);">Welcome/Joinee Kits</a>
-								</li>
-							</ul>
-						</div>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:void(0);">Eco Friendly</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:void(0);">Branded Products</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:void(0);">Promotional Products</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:void(0);">Welcome/Joinee Kits</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</nav>
 		</header>
