@@ -1,6 +1,7 @@
 <?php
-
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Website
+Route::name('front.')->group(function(){
+    Route::get('/', 'Front\FrontController@index')->name('home');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin  Guard
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -34,3 +36,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
 });
+
+
+
