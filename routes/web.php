@@ -47,6 +47,16 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:admin'])->group(function() {
         // dashboard
         Route::get('/home', 'Admin\AdminController@home')->name('home');
+
+         // collection
+         Route::prefix('collection')->name('collection.')->group(function() {
+            Route::get('/', 'Admin\CollectionController@index')->name('index');
+            Route::post('/store', 'Admin\CollectionController@store')->name('store');
+            Route::get('/{id}/view', 'Admin\CollectionController@show')->name('view');
+            Route::post('/{id}/update', 'Admin\CollectionController@update')->name('update');
+            Route::get('/{id}/status', 'Admin\CollectionController@status')->name('status');
+            Route::get('/{id}/delete', 'Admin\CollectionController@destroy')->name('delete');
+        });
     });
 
 });

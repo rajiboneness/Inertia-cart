@@ -44,7 +44,7 @@
 						<a class="navbar-toggler" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 							<i data-feather="menu"></i>
 						  </a>
-						<a class="navbar-brand" href="{{ route('front.home') }}"><img src="../img/logo.png" width="195px"></a>
+						<a class="navbar-brand" href="{{ route('front.home') }}"><img src="{{ asset('../img/logo.png') }}" width="195px"></a>
 						<div class="position-relative resp_hide w-50">
 							<input class="form-control d-none d-lg-block" type="search" placeholder="Search...">
 							<button class="btn btn_search"><i data-feather="search"></i></button>
