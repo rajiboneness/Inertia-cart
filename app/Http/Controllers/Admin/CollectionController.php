@@ -38,15 +38,15 @@ class CollectionController extends Controller
         if ($storeData) {
             return redirect()->route('admin.collection.index');
         } else {
-            return redirect()->route('admin.collection.create')->withInput($request->all());
+            return redirect()->route('admin.collection.index')->withInput($request->all());
         }
     }
 
-    // public function show(Request $request, $id)
-    // {
-    //     $data = $this->collectionRepository->getCollectionById($id);
-    //     return view('admin.collection.detail', compact('data'));
-    // }
+    public function show(Request $request, $id)
+    {
+        $data = $this->collectionRepository->getCollectionById($id);
+        return view('admin.collection.detail', compact('data'));
+    }
 
     // public function update(Request $request, $id)
     // {

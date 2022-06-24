@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('/img/fav_icon.png') }}">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
 
     <title>Inertia Cart| Admin @yield('page')</title>
@@ -17,16 +18,17 @@
     <aside class="side__bar shadow-sm">
         <div class="admin__logo">
             <div class="logo">
-                <svg width="322" height="322" viewBox="0 0 322 322" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {{-- <svg width="322" height="322" viewBox="0 0 322 322" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="231.711" y="47.8629" width="60" height="260" rx="30" transform="rotate(45 231.711 47.8629)" fill="#c10909" />
                     <rect x="236.66" y="137.665" width="60" height="180" rx="30" transform="rotate(45 236.66 137.665)" fill="#c10909" />
                     <rect x="141.908" y="42.9132" width="60" height="180" rx="30" transform="rotate(45 141.908 42.9132)" fill="#c10909" />
-                </svg>
+                </svg> --}}
+                <img src="{{ asset('/img/logo.png') }}" alt="logo" style="width: 168px;">
             </div>
-            <div class="admin__info">
+            {{-- <div class="admin__info">
                 <h1>{{ Auth()->guard('admin')->user()->name }}</h1>
                 <h4>{{ Auth()->guard('admin')->user()->email }}</h4>
-            </div>
+            </div> --}}
         </div>
         <nav class="main__nav">
             <ul>
@@ -39,7 +41,7 @@
 
                         <li class="{{ ( request()->is('admin/subcategory*') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>Sub-category</span></a></li>
 
-                        <li class="{{ ( request()->is('admin/collection*') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>Collection</span></a></li>
+                        <li class="{{ ( request()->is('admin/collection*') ) ? 'active' : '' }}"><a href="{{ route('admin.collection.index') }}"><i class="fi fi-br-database"></i> <span>Collection</span></a></li>
                     </ul>
                 </li>
 

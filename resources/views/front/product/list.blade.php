@@ -2,6 +2,44 @@
 @extends('layouts.app')
 @section('page', 'products list')
 @section('content')
+            <div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Same Day Delivery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Stationery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Corporate Gifts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Apparels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Boxes & Packaging</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Awards & Trophies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Signs & Marketing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Photo Gifts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Decor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);">Design Services</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<!--end_heaader-->
     <section class="product_item">
         <div class="container">
             <div class="row m-0 mt-3 mt-lg-5">
