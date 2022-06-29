@@ -32,19 +32,19 @@ interface CollectionInterface
     //  * @param str $collectionId
     //  * @param arr $newDetails
     //  */
-    // public function updateCollection($collectionId, array $newDetails);
+    public function updateCollection($collectionId, array $newDetails);
 
     // /**
     //  * This method is to toggle collection status
     //  * @param str $collectionId
     //  */
-    // public function toggleStatus($collectionId);
+    public function toggleStatus($collectionId);
 
     // /**
     //  * This method is to delete collection
     //  * @param str $collectionId
     //  */
-    // public function deleteCollection($collectionId);
+    public function deleteCollection($collectionId);
 
     // /**
     //  * This method is to delete collection

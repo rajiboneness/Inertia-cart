@@ -208,86 +208,18 @@
                 </div>
             </div>
             <div class="row m-0">
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/business-cards.png">
+                @foreach ($categories as $category)
+                    <div class="col-6 col-lg-3 mb-3">
+                        <a href="javascript:void(0);">
+                            <div class="card border-0">
+                                <div class="product_cimage">
+                                    <img src="{{ asset($category->image_path) }}">
+                                </div>
+                                <h6>{{ $category->name }}</h6>
                             </div>
-                            <h6>Business Cards</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/button-badges.png">
-                            </div>
-                            <h6>Button Badges</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/flayers.png">
-                            </div>
-                            <h6>Flyers</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/labels.png">
-                            </div>
-                            <h6>Labels</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/notebooks.png">
-                            </div>
-                            <h6>Notebooks</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/poly-bags.png">
-                            </div>
-                            <h6>Courier Poly Bags</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/booklets.png">
-                            </div>
-                            <h6>Booklets</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-3 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="product_cimage">
-                                <img src="./img/tshirts.png">
-                            </div>
-                            <h6>T-Shirts</h6>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -311,84 +243,21 @@
                 </div>
             </div>
             <div class="row m-0">
-                <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="nw_launch">
-                            <div class="nl_text">
-                                <h6>Lorem Ipsum is simply</h6>
-                                <p>Lorem Ipsum is simply dummy text of the printing</p>
+                @foreach ($products as $product)
+                    <div class="col-12 col-sm-6 col-lg-4 mb-3">
+                        <a href="javascript:void(0);">
+                            <div class="nw_launch">
+                                <div class="nl_text">
+                                    <h6>{{ $product->name }}</h6>
+                                    <p>{!!$product->short_desc !!}</p>
+                                </div>
+                                <div class="ln_image">
+                                    <img src="{{ asset($product->image) }}">
+                                </div>
                             </div>
-                            <div class="ln_image">
-                                <img src="./img/1.png">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="nw_launch">
-                            <div class="nl_text">
-                                <h6>Lorem Ipsum is simply</h6>
-                                <p>Lorem Ipsum is simply dummy text of the printing</p>
-                            </div>
-                            <div class="ln_image">
-                                <img src="./img/2.png">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="nw_launch">
-                            <div class="nl_text">
-                                <h6>Lorem Ipsum is simply</h6>
-                                <p>Lorem Ipsum is simply dummy text of the printing</p>
-                            </div>
-                            <div class="ln_image">
-                                <img src="./img/3.png">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="nw_launch">
-                            <div class="nl_text">
-                                <h6>Lorem Ipsum is simply</h6>
-                                <p>Lorem Ipsum is simply dummy text of the printing</p>
-                            </div>
-                            <div class="ln_image">
-                                <img src="./img/4.png">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="nw_launch">
-                            <div class="nl_text">
-                                <h6>Lorem Ipsum is simply</h6>
-                                <p>Lorem Ipsum is simply dummy text of the printing</p>
-                            </div>
-                            <div class="ln_image">
-                                <img src="./img/5.png">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                    <a href="javascript:void(0);">
-                        <div class="nw_launch">
-                            <div class="nl_text">
-                                <h6>Lorem Ipsum is simply</h6>
-                                <p>Lorem Ipsum is simply dummy text of the printing</p>
-                            </div>
-                            <div class="ln_image">
-                                <img src="./img/6.png">
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -453,66 +322,18 @@
                 </div>
             </div>
             <div class="row m-0 mb-0 mb-lg-4 f_collect">
-                <div class="col-6 col-lg-4 mb-3 fea_col">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="position-relative fc_bg">
-                                <img src="./img/packaging.jpg">
+                @foreach ($collections as $item)
+                    <div class="col-6 col-lg-4 mb-3 fea_col">
+                        <a href="javascript:void(0);">
+                            <div class="card border-0">
+                                <div class="position-relative fc_bg">
+                                    <img src="{{ asset($item->image_path) }}">
+                                </div>
+                                <h6>{{ $item->name }}</h6>
                             </div>
-                            <h6>Packaging Products</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-4 mb-3 fea_col">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="position-relative fc_bg">
-                                <img src="./img/stationery.jpg">
-                            </div>
-                            <h6>Stationery</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-4 mb-3 fea_col">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="position-relative fc_bg">
-                                <img src="./img/photobook.jpg">
-                            </div>
-                            <h6>Photo Books</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-4 mb-3 fea_col">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="position-relative fc_bg">
-                                <img src="./img/awards.jpg">
-                            </div>
-                            <h6>Awards</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-4 mb-3 fea_col">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="position-relative fc_bg">
-                                <img src="./img/corporate_gifts.jpg">
-                            </div>
-                            <h6>Corporate Gifts</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-6 col-lg-4 mb-3 fea_col">
-                    <a href="javascript:void(0);">
-                        <div class="card border-0">
-                            <div class="position-relative fc_bg">
-                                <img src="./img/marketing.jpg">
-                            </div>
-                            <h6>Marketing Materials</h6>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

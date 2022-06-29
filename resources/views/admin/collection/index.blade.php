@@ -63,7 +63,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 card">
-                                <div class="card-header p-0 mb-3">Thumbnail <span class="text-danger">*</span></div>
+                                <div class="card-header p-0 mb-3">Image* <span class="text-danger">*</span></div>
                                 <div class="card-body p-0">
                                     <div class="w-100 product__thumb">
                                         <label for="thumbnail"><img id="output" src="{{ asset('admin/images/placeholder-image.png') }}" /></label>

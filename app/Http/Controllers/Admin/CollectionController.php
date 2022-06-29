@@ -48,44 +48,40 @@ class CollectionController extends Controller
         return view('admin.collection.detail', compact('data'));
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     // dd($request->all());
+    public function update(Request $request, $id)
+    {
+        // dd($request->all());
+        $request->validate([
+            "name" => "required|string|max:255",
+            "description" => "nullable|string",
+            "image_path" => "nullable|mimes:jpg,jpeg,png,svg,gif|max:10000000"
+        ]);
 
-    //     $request->validate([
-    //         "name" => "required|string|max:255",
-    //         "description" => "nullable|string",
-    //         "icon_path" => "nullable|mimes:jpg,jpeg,png,svg,gif|max:10000000",
-    //         "sketch_icon" => "nullable|mimes:jpg,jpeg,png,svg,gif|max:10000000",
-    //         "image_path" => "nullable|mimes:jpg,jpeg,png,svg,gif|max:10000000",
-    //         "banner_image" => "nullable|mimes:jpg,jpeg,png,svg,gif|max:10000000"
-    //     ]);
+        $params = $request->except('_token');
+        $storeData = $this->collectionRepository->updateCollection($id, $params);
 
-    //     $params = $request->except('_token');
-    //     $storeData = $this->collectionRepository->updateCollection($id, $params);
+        if ($storeData) {
+            return redirect()->route('admin.collection.index');
+        } else {
+            return redirect()->route('admin.collection.index')->withInput($request->all());
+        }
+    }
 
-    //     if ($storeData) {
-    //         return redirect()->route('admin.collection.index');
-    //     } else {
-    //         return redirect()->route('admin.collection.create')->withInput($request->all());
-    //     }
-    // }
+    public function status(Request $request, $id)
+    {
+        $storeData = $this->collectionRepository->toggleStatus($id);
 
-    // public function status(Request $request, $id)
-    // {
-    //     $storeData = $this->collectionRepository->toggleStatus($id);
+        if ($storeData) {
+            return redirect()->route('admin.collection.index');
+        } else {
+            return redirect()->route('admin.collection.index')->withInput($request->all());
+        }
+    }
 
-    //     if ($storeData) {
-    //         return redirect()->route('admin.collection.index');
-    //     } else {
-    //         return redirect()->route('admin.collection.create')->withInput($request->all());
-    //     }
-    // }
+    public function destroy(Request $request, $id) 
+    {
+        $this->collectionRepository->deleteCollection($id);
 
-    // public function destroy(Request $request, $id) 
-    // {
-    //     $this->collectionRepository->deleteCollection($id);
-
-    //     return redirect()->route('admin.collection.index');
-    // }
+        return redirect()->route('admin.collection.index');
+    }
 }

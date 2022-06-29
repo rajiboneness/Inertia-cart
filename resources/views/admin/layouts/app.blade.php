@@ -18,17 +18,8 @@
     <aside class="side__bar shadow-sm">
         <div class="admin__logo">
             <div class="logo">
-                {{-- <svg width="322" height="322" viewBox="0 0 322 322" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="231.711" y="47.8629" width="60" height="260" rx="30" transform="rotate(45 231.711 47.8629)" fill="#c10909" />
-                    <rect x="236.66" y="137.665" width="60" height="180" rx="30" transform="rotate(45 236.66 137.665)" fill="#c10909" />
-                    <rect x="141.908" y="42.9132" width="60" height="180" rx="30" transform="rotate(45 141.908 42.9132)" fill="#c10909" />
-                </svg> --}}
-                <img src="{{ asset('/img/logo.png') }}" alt="logo" style="width: 168px;">
+                <a href="{{ route('front.home') }}"><img src="{{ asset('/img/logo.png') }}" alt="logo" style="width: 168px;"></a>
             </div>
-            {{-- <div class="admin__info">
-                <h1>{{ Auth()->guard('admin')->user()->name }}</h1>
-                <h4>{{ Auth()->guard('admin')->user()->email }}</h4>
-            </div> --}}
         </div>
         <nav class="main__nav">
             <ul>
@@ -37,9 +28,9 @@
                 <li class="@if(request()->is('admin/category*') || request()->is('admin/subcategory*') || request()->is('admin/collection*')) { {{'active'}} }  @endif">
                     <a href="javascript: void(0)"><i class="fi fi-br-cube"></i> <span>Master</span></a>
                     <ul>
-                        <li class="{{ ( request()->is('admin/category*') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>Category</span></a></li>
+                        <li class="{{ ( request()->is('admin/category*') ) ? 'active' : '' }}"><a href="{{ route('admin.category.index') }}"><i class="fi fi-br-database"></i> <span>Category</span></a></li>
 
-                        <li class="{{ ( request()->is('admin/subcategory*') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>Sub-category</span></a></li>
+                        <li class="{{ ( request()->is('admin/subcategory*') ) ? 'active' : '' }}"><a href="{{ route('admin.subcategory.index') }}"><i class="fi fi-br-database"></i> <span>Sub-category</span></a></li>
 
                         <li class="{{ ( request()->is('admin/collection*') ) ? 'active' : '' }}"><a href="{{ route('admin.collection.index') }}"><i class="fi fi-br-database"></i> <span>Collection</span></a></li>
                     </ul>
@@ -48,9 +39,9 @@
                 <li class="@if(request()->is('admin/product*') || request()->is('admin/faq*')) { {{'active'}} }  @endif">
                     <a href="javascript: void(0)"><i class="fi fi-br-cube"></i> <span>Product Management</span></a>
                     <ul>
-                        <li class="{{ ( request()->is('admin/product/list*') ) ? 'active' : '' }}"><a href="#">All Product</a></li>
+                        <li class="{{ ( request()->is('admin/product/list*') ) ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}">All Product</a></li>
 
-                        <li class="{{ ( request()->is('admin/product/create*') ) ? 'active' : '' }}"><a href="#">Add New</a></li>
+                        <li class="{{ ( request()->is('admin/product/create*') ) ? 'active' : '' }}"><a href="{{ route('admin.product.create') }}">Add New Product</a></li>
                     </ul>
                 </li>
 
