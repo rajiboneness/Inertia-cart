@@ -17,10 +17,10 @@ class CollectionRepository implements CollectionInterface
     {
         return Collection::findOrFail($collectionId);
     }
-    // public function getCollectionBySlug($slug, array $request = null) 
-    // {
-    //     return Collection::where('slug', $slug)->with('ProductDetails')->first();
-    // }
+    public function getCollectionBySlug($slug, array $request = null) 
+    {
+        return Collection::where('slug', $slug)->with('ProductDetails')->first();
+    }
 
     public function deleteCollection($collectionId) 
     {

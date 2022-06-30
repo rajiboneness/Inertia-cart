@@ -156,15 +156,17 @@
             <div class="row m-0">
                 <div class="swiper bannerSwiper">
                     <div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href=""><img src="./img/card1.jpg"></a></div>
-                    <div class="swiper-slide"><a href=""><img src="./img/card2.jpg"></a></div>
+                    @foreach ($banner as $item)
+                        <div class="swiper-slide"><a href="{{ $item->link }}"><img src="{{ asset($item->image) }}"></a></div>
+                    @endforeach
+                    {{-- <div class="swiper-slide"><a href=""><img src="./img/card2.jpg"></a></div>
                     <div class="swiper-slide"><a href=""><img src="./img/card3.jpg"></a></div>
                     <div class="swiper-slide"><a href=""><img src="./img/card4.jpg"></a></div>
                     <div class="swiper-slide"><a href=""><img src="./img/card1.jpg"></a></div>
                     <div class="swiper-slide"><a href=""><img src="./img/card2.jpg"></a></div>
                     <div class="swiper-slide"><a href=""><img src="./img/card3.jpg"></a></div>
                     <div class="swiper-slide"><a href=""><img src="./img/card4.jpg"></a></div>
-                    <div class="swiper-slide"><a href=""><img src="./img/card3.jpg"></a></div>
+                    <div class="swiper-slide"><a href=""><img src="./img/card3.jpg"></a></div> --}}
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>

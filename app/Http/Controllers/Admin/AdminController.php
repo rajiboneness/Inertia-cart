@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Collection;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -29,12 +33,13 @@ class AdminController extends Controller
     {
         // $data = $userRepository->listAll();
         // dd($data->count());
-        // $data = (object)[];
+        $data = (object)[];
         // $data->users = User::count();
-        // $data->category = Category::count();
-        // $data->subcategory = SubCategory::count();
-        // $data->products = Product::latest('id')->limit(5)->get();
+        $data->category = Category::count();
+        $data->subcategory = SubCategory::count();
+        $data->collection = Collection::count();
+        $data->products = Product::latest('id')->limit(5)->get();
         // $data->orders = Order::latest('id')->limit(5)->get();
-        return view('admin.home');
+        return view('admin.home', compact('data'));
     }
 }

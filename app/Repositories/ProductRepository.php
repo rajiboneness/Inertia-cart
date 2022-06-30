@@ -36,6 +36,10 @@ class ProductRepository implements ProductInterface
     {
         return Collection::all();
     }
+    public function getCollectionData() 
+    {
+        return Collection::take(12)->get();
+    }
 
     public function listById($id) 
     {

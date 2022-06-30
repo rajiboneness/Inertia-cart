@@ -68,7 +68,7 @@ class CategoryController extends Controller
         if ($categoryStore) {
             return redirect()->route('admin.category.index');
         } else {
-            return redirect()->route('admin.category.index')->withInput($request->all());
+            return redirect()->route('admin.category.view')->withInput($request->all());
         }
     }
 

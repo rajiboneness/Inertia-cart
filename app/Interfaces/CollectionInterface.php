@@ -19,7 +19,7 @@ interface CollectionInterface
     //  * This method is to get collection details by slug
     //  * @param str $slug
     //  */
-    // public function getCollectionBySlug($slug, array $request = null);
+    public function getCollectionBySlug($slug, array $request = null);
 
     /**
      * This method is to create collection

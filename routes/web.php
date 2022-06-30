@@ -20,8 +20,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::name('front.')->group(function(){
     Route::get('/', 'Front\FrontController@index')->name('home');
 
-
-
     // Product details
     Route::prefix('product')->name('product.')->group(function() {
         Route::get('/', 'Front\ProductController@index')->name('list');
@@ -30,6 +28,10 @@ Route::name('front.')->group(function(){
     // Cart details
     Route::prefix('cart')->name('cart.')->group(function() {
         Route::get('/', 'Front\CartController@index')->name('index');
+    });
+    // Collection
+    Route::prefix('collection')->name('collection.')->group(function() {
+        Route::get('/{slug}', 'Front\CollectionController@detail')->name('product');
     });
 });
 
@@ -83,13 +85,18 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/create', 'Admin\ProductController@create')->name('create');
             Route::post('/store', 'Admin\ProductController@store')->name('store');
             Route::get('/{id}/view', 'Admin\ProductController@show')->name('view');
-            Route::post('/size', 'Admin\ProductController@size')->name('size');
             Route::get('/{id}/edit', 'Admin\ProductController@edit')->name('edit');
             Route::post('/{id}/update', 'Admin\ProductController@update')->name('update');
             Route::get('/{id}/status', 'Admin\ProductController@status')->name('status');
-            Route::get('/{id}/sale', 'Admin\ProductController@sale')->name('sale');
             Route::get('/{id}/delete', 'Admin\ProductController@destroy')->name('delete');
-            Route::get('/{id}/image/delete', 'Admin\ProductController@destroySingleImage')->name('image.delete');
+        });
+        Route::prefix('banner')->name('banner.')->group(function(){
+            Route::get('/list', 'Admin\BannerController@index')->name('index');
+            Route::post('/store', 'Admin\BannerController@store')->name('store');
+            Route::post('/update/{id}', 'Admin\BannerController@update')->name('update');
+            Route::get('/view/{id}', 'Admin\BannerController@show')->name('view');
+            Route::get('/status/{id}', 'Admin\BannerController@status')->name('status');
+            Route::get('/delete/{id}', 'Admin\BannerController@destroy')->name('delete');
         });
     });
 

@@ -56,6 +56,12 @@
                         <li class="{{ ( request()->is('admin/order?status=new') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>New Orders</span></a></li>
                     </ul>
                 </li>
+                <li class="@if(request()->is('admin/order*')) { {{'active'}} }  @endif">
+                    <a href="javascript: void(0)"><i class="fi fi-br-cube"></i> <span>Banners</span></a>
+                    <ul>
+                        <li class="{{ ( request()->is('admin/order') ) ? 'active' : '' }}"><a href="{{ route('admin.banner.index') }}"><i class="fi fi-br-database"></i> <span>All Banner</span></a></li>
+                    </ul>
+                </li>
 
                 
                 {{-- <li class="{{ ( request()->is('admin/coupon*') ) ? 'active' : '' }}"><a href="{{ route('admin.coupon.index') }}"><i class="fi fi-br-database"></i> <span>Coupon Management</span></a></li>
