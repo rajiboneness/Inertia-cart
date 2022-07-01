@@ -36,11 +36,7 @@ class ProductRepository implements ProductInterface
     {
         return Collection::all();
     }
-    public function getCollectionData() 
-    {
-        return Collection::take(12)->get();
-    }
-
+    
     public function listById($id) 
     {
         return Product::findOrFail($id);
@@ -68,7 +64,7 @@ class ProductRepository implements ProductInterface
             $collectedData = collect($data);
             $newEntry = new Product;
             $newEntry->cat_id = $collectedData['cat_id'];
-            $newEntry->sub_cat_id = $subCategory;
+            $newEntry->sub_cat_id = $collectedData['sub_cat_id'];
             $newEntry->collection_id = $collectedData['collection_id'];
             $newEntry->name = $collectedData['name'];
             $newEntry->short_desc = $collectedData['short_desc'];

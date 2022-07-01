@@ -25,10 +25,10 @@ class CategoryRepository implements CategoryInterface
         return Category::findOrFail($categoryId);
     }
 
-    // public function getCategoryBySlug($slug) 
-    // {
-    //     return Category::where('slug', $slug)->with('ProductDetails')->first();
-    // }
+    public function getSubCategoryBySlug($slug, array $request = null) 
+    {
+        return Category::where('slug', $slug)->with('SubCategoryDetails')->first();
+    }
 
     public function deleteCategory($categoryId) 
     {

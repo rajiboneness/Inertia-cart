@@ -2,18 +2,6 @@
 @extends('layouts.app')
 @section('page', 'products list')
 @section('content')
-        {{-- <div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <ul class="navbar-nav m-auto">
-                    @foreach ($collections as $item)
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('front.collection.product', $item->slug) }}">{{ $item->name }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div> --}}
-    </nav>
-</header>
 <!--end_heaader-->
     <section class="product_item">
         <div class="container">
@@ -25,7 +13,7 @@
                     </ol>
                 </nav>
             </div>
-            @if (count($data->ProductDetails) > 0)
+            @if (count($data->SubCategoryDetails) > 0)
                 <div class="row m-0 mb-4 mb-lg-4">
                     <div class="page_title_inner">
                         <h5><span>{{ $data->name }}</span></h5>
@@ -33,15 +21,15 @@
                     </div>
                 </div>
                 <div class="row m-0 mt-3 mt-lg-5 product_list">
-                    @forelse($data->ProductDetails as $collectionProductKey => $collectionProductValue)
+                    @forelse($data->SubCategoryDetails as $collectionCatKey => $collectionCatValue)
                         <div class="col-6 col-lg-3 mb-3">
-                            <a href="product_details.html">
+                            <a href="#">
                                 <div class="card border-0">
                                     <div class="product_cimage">
-                                        <img src="{{ asset($collectionProductValue->image) }}">
+                                        <img src="{{ asset($collectionCatValue->image_path) }}">
                                     </div>
-                                    <h6>{{ $collectionProductValue->name }}</h6>
-                                    <p>100 cards starting from <span>{{ $collectionProductValue->price }}</span></p>
+                                    <h6>{{ $collectionCatValue->name }}</h6>
+                                    <p>100 cards starting from <span>250</span></p>
                                 </div>
                             </a>
                         </div>

@@ -14,15 +14,22 @@ class CollectionController extends Controller
         $this->collectionRepository = $collectionRepository;
     }
 
+    public function index(Request $request){
+        $collections = $this->collectionRepository->getCollectionData();
+        
+        return view('front.collection.list', compact('collections'));
+    }
+
     public function detail(Request $request, $slug)
     {
-        $data = $this->collectionRepository->getCollectionBySlug($slug);
+        $data = $this->collectionRepository->getCategoryBySlug($slug);
         if ($data) {
-            return view('front.collection.collection-product', compact('data'));
+            return view('front.category.list', compact('data'));
         } else {
             return view('front.404');
         }
     }
+
     
 
 

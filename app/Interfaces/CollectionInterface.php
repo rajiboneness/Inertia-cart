@@ -8,7 +8,7 @@ interface CollectionInterface
      * This method is to fetch list of all collections
      */
     public function getAllCollections();
-
+    public function getCollectionData();
     /**
      * This method is to get collection details by id
      * @param str $collectionId
@@ -19,7 +19,7 @@ interface CollectionInterface
     //  * This method is to get collection details by slug
     //  * @param str $slug
     //  */
-    public function getCollectionBySlug($slug, array $request = null);
+    public function getCategoryBySlug($slug, array $request = null);
 
     /**
      * This method is to create collection

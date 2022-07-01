@@ -2,26 +2,13 @@
 @extends('layouts.app')
 @section('page', 'products list')
 @section('content')
-            <div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <ul class="navbar-nav m-auto">
-                    @foreach ($collections as $item)
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('front.collection.product', $item->slug) }}">{{ $item->name }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-<!--end_heaader-->
     <section class="product_item">
         <div class="container">
             <div class="row m-0 mt-3 mt-lg-5">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">All Products</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Collections</li>
                     </ol>
                 </nav>
             </div>

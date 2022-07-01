@@ -3,7 +3,7 @@
 @section('page', 'Home')
 @section('content')
 
-            <div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            {{-- <div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('front.product.details') }}">Single Products</a>
@@ -149,7 +149,7 @@
             </div>
         </div>
     </nav>
-</header>
+</header> --}}
 <!--end_heaader-->
     <section class="banner">
         <div class="container-fluid pe-lg-0">

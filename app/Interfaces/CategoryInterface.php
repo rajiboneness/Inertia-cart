@@ -21,7 +21,7 @@ interface CategoryInterface
      * This method is to get category details by slug
      * @param str $slug
      */
-    // public function getCategoryBySlug($slug);
+        public function getSubCategoryBySlug($slug, array $request = null);
 
     /**
      * This method is to create category

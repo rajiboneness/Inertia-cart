@@ -12,14 +12,18 @@ class CollectionRepository implements CollectionInterface
     {
         return Collection::all();
     }
+    public function getCollectionData() 
+    {
+        return Collection::take(12)->get();
+    }
 
     public function getCollectionById($collectionId) 
     {
         return Collection::findOrFail($collectionId);
     }
-    public function getCollectionBySlug($slug, array $request = null) 
+    public function getCategoryBySlug($slug, array $request = null) 
     {
-        return Collection::where('slug', $slug)->with('ProductDetails')->first();
+        return Collection::where('slug', $slug)->with('categoryDetails')->first();
     }
 
     public function deleteCollection($collectionId) 

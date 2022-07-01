@@ -62,6 +62,19 @@
 							</ul>
 						</div>
 					</div>
+					<div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+						<ul class="navbar-nav m-auto">
+							@foreach ($collections as $item)
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="{{ route('front.collection.category', $item->slug) }}">{{ $item->name }}</a>
+								</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!--end_heaader-->
         <main>@yield('content')</main>
 		<footer>
 			<div class="container">
