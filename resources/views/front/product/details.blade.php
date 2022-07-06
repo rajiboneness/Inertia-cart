@@ -1,53 +1,17 @@
-
 @extends('layouts.app')
-@section('page', 'product details')
+@section('page')
 @section('content')
-            <div class="collapse navbar-collapse" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <ul class="navbar-nav m-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Same Day Delivery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Stationery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Corporate Gifts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Apparels</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Boxes & Packaging</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Awards & Trophies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Signs & Marketing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Photo Gifts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Decor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Design Services</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
 <!--end_heaader-->
     <section class="product_item border-0">
         <div class="container">
             <div class="row m-0 mt-3 mt-lg-5">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item">Business Cards</li>
-                        <li class="breadcrumb-item active" aria-current="page">Business Cards (Express Delivery)</li>
+                    <li class="breadcrumb-item"><a href="{{ route('front.home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('front.collection.category', $data->collection->slug) }}"> {{ $data->collection->name }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('front.category.details', $data->category->slug) }}">{{ $data->category->name }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('front.category.sub_category_details', [$data->category->slug,$data->subCategory->slug]) }}">{{ $data->subCategory->name }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $data->name }}</li>
                     </ol>
                 </nav>
             </div>
@@ -56,7 +20,7 @@
                     <div class="swiper pd_slide2">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="../img/pro_imgl.png" />
+                                <img src="{{ asset($data->image) }}" />
                             </div>
                             <div class="swiper-slide">
                                 <img src="../img/business-cards.png" />
@@ -82,18 +46,21 @@
                 </div>
                 <div class="col-12 col-lg-7 ps-lg-3">
                     <div class="pd_text">
-                        <h5>Business Cards (Express Delivery)</h5>
+                        <h5>{{ $data->name }}</h5>
                         <p>Same day business cards.</p>
                         <ul>
                             <li>
-                                We have selected the most popular settings for you. 3.5 x 2 in on upto 300 gsm different materials.
+                               {!! $data->short_desc !!}
                             </li>
                             <li>
+                               {!! $data->short_desc !!}
+                            </li>
+                            {{-- <li>
                                 You can select landscape or portrait, printing one side or two. A few clicks and you're done.
                             </li>
                             <li>
                                 100 3.5 x 2 in business cards printed both sides using recommended specifications including express production for only 168.00
-                            </li>
+                            </li> --}}
                         </ul>
                         <h6 class="mt-lg-4">Same-Day Delivery for orders placed before 3 pm.</h6>
                         <form class="row m-0 ">
@@ -140,7 +107,7 @@
                                 <input class="form-control" type="text" placeholder="Pincode">
                             </div>
                             <div class="cart_btnsec">
-                                <h4>₹944.00<small>inclusive of all taxes</small><span>for 100 Qty (₹9.44 / piece)</span></h4>
+                                <h4>₹{{ sprintf("%02.2f", $data->offer_price) }}<small>inclusive of all taxes</small><span>for 100 Qty (₹9.44 / piece)</span></h4>
                                 <button class="btn cart_btn">Design Your Product <i data-feather="arrow-right"></i></button>
                             </div>
                         </form>

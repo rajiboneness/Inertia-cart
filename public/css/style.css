@@ -755,6 +755,7 @@ footer .container{
 .product_list .card p span{
   color: #4ba0d6;
   font-weight: 600;
+  font-size: 23px;
 }
 
 /*--------Product_details------------*/
@@ -1364,6 +1365,20 @@ select.did-floating-select::-ms-expand {
 .filter_resp{
   display: none;
 }
+
+
+/* sub category details */
+
+.sub_list p{
+  overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+/* sub category details */
+
+
 /* ============ desktop view ============ */
 @media all and (min-width: 992px) {
 

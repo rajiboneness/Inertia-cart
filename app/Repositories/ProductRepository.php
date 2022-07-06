@@ -42,9 +42,12 @@ class ProductRepository implements ProductInterface
         return Product::findOrFail($id);
     }
 
-    public function listBySlug($slug) 
-    {
-        return Product::where('slug', $slug)->with('category', 'subCategory', 'collection', 'colorSize')->first();
+    // public function listBySlug($slug) 
+    // {
+    //     return Product::where('slug', $slug)->with('category', 'subCategory', 'collection', 'colorSize')->first();
+    // }
+    public function ProductDetails($slug, array $request = null){
+        return Product::where('slug', $slug)->with('category', 'subCategory', 'collection')->first();
     }
 
     // public function relatedProducts($id) 

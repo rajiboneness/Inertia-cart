@@ -23,6 +23,7 @@ Route::name('front.')->group(function(){
     // Product details
     Route::prefix('product')->name('product.')->group(function() {
         Route::get('/', 'Front\ProductController@index')->name('list');
+        Route::get('/{slug}', 'Front\ProductController@details')->name('details');
     });
     // Cart details
     Route::prefix('cart')->name('cart.')->group(function() {
@@ -34,12 +35,12 @@ Route::name('front.')->group(function(){
         Route::get('/{slug}', 'Front\CollectionController@detail')->name('category');
     });
     // Category
-    Route::prefix('category')->name('category.')->group(function(){
+    Route::prefix('categories')->name('category.')->group(function(){
         Route::get('/{slug}', 'Front\CategoryController@subCategorylist')->name('details');
+        Route::get('/{cat_slug}/{slug}', 'Front\CategoryController@SubCatWiseProduct')->name('sub_category_details');
     });
+    // Route::
 });
-
- 
 
 Auth::routes();
 

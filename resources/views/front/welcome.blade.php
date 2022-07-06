@@ -212,7 +212,7 @@
             <div class="row m-0">
                 @foreach ($categories as $category)
                     <div class="col-6 col-lg-3 mb-3">
-                        <a href="javascript:void(0);">
+                        <a href="{{ route('front.category.details', $category->slug) }}">
                             <div class="card border-0">
                                 <div class="product_cimage">
                                     <img src="{{ asset($category->image_path) }}">
@@ -247,7 +247,7 @@
             <div class="row m-0">
                 @foreach ($products as $product)
                     <div class="col-12 col-sm-6 col-lg-4 mb-3">
-                        <a href="javascript:void(0);">
+                        <a href="{{ route('front.product.details', $product->slug) }}">
                             <div class="nw_launch">
                                 <div class="nl_text">
                                     <h6>{{ $product->name }}</h6>
@@ -326,7 +326,7 @@
             <div class="row m-0 mb-0 mb-lg-4 f_collect">
                 @foreach ($collections as $item)
                     <div class="col-6 col-lg-4 mb-3 fea_col">
-                        <a href="javascript:void(0);">
+                        <a href="{{ route('front.collection.category', $item->slug) }}">
                             <div class="card border-0">
                                 <div class="position-relative fc_bg">
                                     <img src="{{ asset($item->image_path) }}">

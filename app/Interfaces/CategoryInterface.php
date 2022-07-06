@@ -16,12 +16,13 @@ interface CategoryInterface
      * @param str $categoryId
      */
     public function getCategoryById($categoryId);
-
     /**
      * This method is to get category details by slug
      * @param str $slug
      */
         public function getSubCategoryBySlug($slug, array $request = null);
+
+        public function ProductBySubCategory($slug, array $request = null);
 
     /**
      * This method is to create category

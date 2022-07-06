@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\CategoryInterface;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\SubCategory;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 
@@ -28,6 +29,11 @@ class CategoryRepository implements CategoryInterface
     public function getSubCategoryBySlug($slug, array $request = null) 
     {
         return Category::where('slug', $slug)->with('SubCategoryDetails')->first();
+    }
+
+    public function ProductBySubCategory($slug, array $request = null)
+    {
+        return SubCategory::where('slug', $slug)->with('product', 'category')->first();
     }
 
     public function deleteCategory($categoryId) 
