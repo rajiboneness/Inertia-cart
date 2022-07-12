@@ -32,7 +32,7 @@
                                     @php 
                                     $MinAmount = App\Models\Product::select('offer_price')->where('sub_cat_id', $collectionCatValue->id)->min('offer_price');
                                     @endphp
-                                    <span> Starting from {{ $MinAmount ? $MinAmount : "00" }}</span>
+                                    <p> Starting from <span>{{ $MinAmount ? $MinAmount : "100" }}</span></p>
                                     <p>{!!$collectionCatValue->description !!}</p>
                                 </div>
                             </a>

@@ -10,7 +10,7 @@ interface ProductInterface
     public function collectionList();
     // public function listBySlug($slug);
     // public function relatedProducts($id);
-    // public function listImagesById($id);
+    public function listImagesById($id);
     public function create(array $data);
     public function update($id, array $data);
     public function toggle($id);

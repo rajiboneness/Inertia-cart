@@ -204,6 +204,15 @@
                         </script>
                     </div>
                 </div>
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        More product images
+                    </div>
+                    <div class="card-body">
+                        <input type="file" accept="image/*" name="product_images[]" multiple>
+                        @error('product_images') <p class="small text-danger">{{ $message }}</p> @enderror
+                    </div>
+                </div>
             </div>
         </div>
     </form>

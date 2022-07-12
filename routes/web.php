@@ -95,6 +95,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/{id}/status', 'Admin\ProductController@status')->name('status');
             Route::get('/{id}/delete', 'Admin\ProductController@destroy')->name('delete');
         });
+
+        // banner
         Route::prefix('banner')->name('banner.')->group(function(){
             Route::get('/list', 'Admin\BannerController@index')->name('index');
             Route::post('/store', 'Admin\BannerController@store')->name('store');
@@ -102,6 +104,30 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/view/{id}', 'Admin\BannerController@show')->name('view');
             Route::get('/status/{id}', 'Admin\BannerController@status')->name('status');
             Route::get('/delete/{id}', 'Admin\BannerController@destroy')->name('delete');
+        });
+
+        // Website
+        Route::prefix('site')->name('site.')->group(function(){
+            Route::get('/', 'Admin\SocialController@index')->name('index');
+            Route::post('/store', 'Admin\SocialController@store')->name('store');
+            Route::post('/update/{id}', 'Admin\SocialController@update')->name('update');
+            Route::get('/view/{id}', 'Admin\SocialController@show')->name('view');
+            Route::get('/status/{id}', 'Admin\SocialController@status')->name('status');
+            Route::get('/delete/{id}', 'Admin\SocialController@destroy')->name('delete');
+        });
+
+        // About us
+        Route::prefix('about-us')->name('aboutus.')->group(function(){
+            Route::get('/', 'Admin\AboutUsController@index')->name('index');
+            Route::get('/create', 'Admin\AboutUsController@create')->name('create');
+            Route::post('/store', 'Admin\AboutUsController@store')->name('store');
+        });
+
+        // order
+        Route::prefix('order')->name('order.')->group(function() {
+            Route::get('/', 'Admin\OrderController@index')->name('index');
+            Route::get('/{id}/view', 'Admin\OrderController@show')->name('view');
+            Route::get('/{id}/status/{status}', 'Admin\OrderController@status')->name('status');
         });
     });
 

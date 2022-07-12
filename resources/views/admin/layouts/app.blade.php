@@ -48,21 +48,27 @@
                 <li class="@if(request()->is('admin/order*')) { {{'active'}} }  @endif">
                     <a href="javascript: void(0)"><i class="fi fi-br-cube"></i> <span>Order Management</span></a>
                     <ul>
-                        <li class="{{ ( request()->is('admin/order') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>All Orders</span></a></li>
+                        <li class="{{ ( request()->is('admin/order') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index') }}"><i class="fi fi-br-database"></i> <span>All Orders</span></a></li>
 
-                        <li class="{{ ( request()->is('admin/order?status=new') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>New Orders</span></a></li>
-                        <li class="{{ ( request()->is('admin/order?status=new') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>New Orders</span></a></li>
-                        <li class="{{ ( request()->is('admin/order?status=new') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>New Orders</span></a></li>
-                        <li class="{{ ( request()->is('admin/order?status=new') ) ? 'active' : '' }}"><a href="#"><i class="fi fi-br-database"></i> <span>New Orders</span></a></li>
+                        <li class="{{ ( request()->is('admin/order?status=new') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index', ['status'=>'1']) }}"><i class="fi fi-br-database"></i> <span>New Orders</span></a></li>
+
+                        <li class="{{ ( request()->is('admin/order?status=confirm') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index', ['status'=>'2']) }}"><i class="fi fi-br-database"></i> <span>Confirm Orders</span></a></li>
+
+                        <li class="{{ ( request()->is('admin/order?status=ship') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index', ['status'=>'3']) }}"><i class="fi fi-br-database"></i> <span>Shipped Orders</span></a></li>
+
+                        <li class="{{ ( request()->is('admin/order?status=deliver') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index', ['status'=>'4']) }}"><i class="fi fi-br-database"></i> <span>Delivered Orders</span></a></li>
+
+                        <li class="{{ ( request()->is('admin/order?status=cancel') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index', ['status'=>'5']) }}"><i class="fi fi-br-database"></i> <span>Cancelled Orders</span></a></li>
                     </ul>
                 </li>
                 <li class="@if(request()->is('admin/order*')) { {{'active'}} }  @endif">
-                    <a href="javascript: void(0)"><i class="fi fi-br-cube"></i> <span>Banners</span></a>
+                    <a href="javascript: void(0)"><i class="fi fi-br-cube"></i> <span>Site Settings</span></a>
                     <ul>
-                        <li class="{{ ( request()->is('admin/order') ) ? 'active' : '' }}"><a href="{{ route('admin.banner.index') }}"><i class="fi fi-br-database"></i> <span>All Banner</span></a></li>
+                        <li class="{{ ( request()->is('admin/order') ) ? 'active' : '' }}"><a href="{{ route('admin.banner.index') }}"><i class="fi fi-br-database"></i> <span>Banners</span></a></li>
+                        <li class="{{ ( request()->is('admin/order') ) ? 'active' : '' }}"><a href="{{ route('admin.site.index') }}"><i class="fi fi-br-database"></i> <span>Social links</span></a></li>
+                        <li class="{{ ( request()->is('admin/order') ) ? 'active' : '' }}"><a href="{{ route('admin.aboutus.index') }}"><i class="fi fi-br-database"></i> <span>About Us</span></a></li>
                     </ul>
                 </li>
-
                 
                 {{-- <li class="{{ ( request()->is('admin/coupon*') ) ? 'active' : '' }}"><a href="{{ route('admin.coupon.index') }}"><i class="fi fi-br-database"></i> <span>Coupon Management</span></a></li>
 

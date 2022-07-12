@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Collection;
@@ -47,7 +48,7 @@ class ProductRepository implements ProductInterface
     //     return Product::where('slug', $slug)->with('category', 'subCategory', 'collection', 'colorSize')->first();
     // }
     public function ProductDetails($slug, array $request = null){
-        return Product::where('slug', $slug)->with('category', 'subCategory', 'collection')->first();
+        return Product::where('slug', $slug)->with('category', 'subCategory', 'collection', 'MoreImages')->first();
     }
 
     // public function relatedProducts($id) 
@@ -57,10 +58,10 @@ class ProductRepository implements ProductInterface
     //     return Product::where('cat_id', $cat_id)->where('id', '!=', $id)->with('category', 'subCategory', 'collection', 'colorSize')->get();
     // }
 
-    // public function listImagesById($id) 
-    // {
-    //     return ProductImage::where('product_id', $id)->latest('id')->get();
-    // }
+    public function listImagesById($id) 
+    {
+        return ProductImage::where('product_id', $id)->latest('id')->get();
+    }
 
     public function create(array $data) 
     {
@@ -93,14 +94,32 @@ class ProductRepository implements ProductInterface
             $newEntry->image = $upload_path.$uploadedImage;
             // dd($newEntry);
             $newEntry->save();
+
+            // multiple image upload handling
+            if (isset($data['product_images'])) {
+                $moreimages = $data['product_images'];
+                $multipleImageData = [];
+                foreach ($moreimages as $imagekey => $imagevalue) {
+                    // dd($imagevalue);
+                    $imageName = mt_rand().'-'.time().".".$moreimages[0]->getClientOriginalName();
+                    $imagevalue->move($upload_path, $imageName);
+                    $image_path = $upload_path.$imageName;
+                    $multipleImageData[] = [
+                        'product_id' => $newEntry->id,
+                        'image' => $image_path
+                    ];
+                }
+                if(count($multipleImageData) > 0) ProductImage::insert($multipleImageData);
+            }
+
             return $newEntry;
     }
 
     public function update($id, array $newDetails) 
     {
+    
             $upload_path = "uploads/product/";
             $updatedEntry = Product::findOrFail($id);
-            // dd($updatedEntry);
             $collectedData = collect($newDetails); 
             if (!empty($collectedData['cat_id'])) $updatedEntry->cat_id = $collectedData['cat_id'];
             if (!empty($collectedData['sub_cat_id'])) $updatedEntry->sub_cat_id = $collectedData['sub_cat_id'];
@@ -133,6 +152,24 @@ class ProductRepository implements ProductInterface
             }
 
             $updatedEntry->save();
+
+             // multiple image upload handling
+            if (isset($newDetails['product_images'])) {
+                $moreimages = $newDetails['product_images'];
+                $multipleImageData = [];
+                foreach ($moreimages as $imagekey => $imagevalue) {
+                    // dd($imagevalue);
+                    $imageName = mt_rand().'-'.time().".".$moreimages[0]->getClientOriginalName();
+                    $imagevalue->move($upload_path, $imageName);
+                    $image_path = $upload_path.$imageName;
+                    $multipleImageData[] = [
+                        'product_id' => $updatedEntry->id,
+                        'image' => $image_path
+                    ];
+                }
+                // dd($multipleImageData);
+                if(count($multipleImageData) > 0) ProductImage::insert($multipleImageData);
+            }
             return $updatedEntry;
     }
 

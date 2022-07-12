@@ -45,6 +45,7 @@ class ProductController extends Controller
             // "meta_desc" => "required",
             // "meta_keyword" => "required",
             "image" => "required",
+            "product_images" => "nullable|array",
         ]);
 
         $params = $request->except('_token');
@@ -60,8 +61,8 @@ class ProductController extends Controller
     public function show(Request $request, $id)
     {
         $data = $this->productRepository->listById($id);
-        // $images = $this->productRepository->listImagesById($id);
-        return view('admin.product.detail', compact('data'));
+        $images = $this->productRepository->listImagesById($id);
+        return view('admin.product.detail', compact('data', 'images'));
     }
 
     public function edit(Request $request, $id)
@@ -89,6 +90,7 @@ class ProductController extends Controller
             // "meta_desc" => "required",
             // "meta_keyword" => "required",
             "image" => "nullable",
+            // "product_images" => "nullable|array",
         ]);
 
         $params = $request->except('_token');

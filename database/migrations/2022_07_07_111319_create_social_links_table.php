@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateBannersTable extends Migration
+class CreateSocialLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class CreateBannersTable extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('social_links', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image');
             $table->longText('link');
-            $table->string('title');
+            $table->string('name');
             $table->tinyInteger('status')->comment('1: active, 0: inactive')->default(1);
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -33,6 +33,6 @@ class CreateBannersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('social_links');
     }
 }

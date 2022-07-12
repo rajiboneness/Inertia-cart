@@ -14,6 +14,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="card shadow-sm">
+                    <div class="card-header">More images</div>
+                    <div class="card-body">
+                        <div class="w-100 product__thumb">
+                        @foreach($images as $index => $singleImage)
+                            <label for="thumbnail"><img id="output" src="{{ asset($singleImage->image) }}" class="img-thumbnail mb-3"/></label>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-9">
                 <div class="card shadow-sm">

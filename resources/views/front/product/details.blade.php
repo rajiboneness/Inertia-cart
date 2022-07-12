@@ -22,25 +22,23 @@
                             <div class="swiper-slide">
                                 <img src="{{ asset($data->image) }}" />
                             </div>
+                            @foreach($data->MoreImages as $moreImageKey => $moreImageValue)
                             <div class="swiper-slide">
-                                <img src="../img/business-cards.png" />
+                                <img src="{{ asset($moreImageValue->image) }}" />
                             </div>
-                            <div class="swiper-slide">
-                                <img src="../img/Standard-BusinessCard.jpg" />
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div thumbsSlider="" class="swiper pd_slide">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="../img/pro_imgl.png" />
+                                <img src="{{ asset($data->image) }}" />
                             </div>
+                            @foreach($data->MoreImages as $moreImageKey => $moreImageValue)
                             <div class="swiper-slide">
-                                <img src="../img/business-cards.png" />
+                                <img src="{{ asset($moreImageValue->image) }}" />
                             </div>
-                            <div class="swiper-slide">
-                                <img src="../img/Standard-BusinessCard.jpg" />
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

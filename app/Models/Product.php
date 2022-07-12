@@ -22,5 +22,8 @@ class Product extends Model
     public function collection() {
         return $this->belongsTo('App\Models\Collection', 'collection_id', 'id');
     }
+    public function MoreImages() {
+        return $this->hasMany('App\Models\ProductImage', 'product_id', 'id');
+    }
 
 }

@@ -18,7 +18,6 @@ class ProductController extends Controller
 
     public function details($slug){
         $data = $this->productRepository->ProductDetails($slug);
-        // dd($data);
         if ($data) {
             return view('front.product.details', compact('data'));
         } else {
