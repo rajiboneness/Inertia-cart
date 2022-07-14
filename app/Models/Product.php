@@ -25,5 +25,9 @@ class Product extends Model
     public function MoreImages() {
         return $this->hasMany('App\Models\ProductImage', 'product_id', 'id');
     }
+    public function ProductVariation(){
+        \DB::statement("SET SQL_MODE=''");
+        return $this->hasMany('App\Models\ProductVariationType', 'product_id', 'id')->groupBy('title')->orderBy('id');
+    }
 
 }

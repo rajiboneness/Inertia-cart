@@ -8,6 +8,7 @@ interface ProductInterface
     public function categoryList();
     public function subCategoryList();
     public function collectionList();
+    public function VariationTitle();
     // public function listBySlug($slug);
     // public function relatedProducts($id);
     public function listImagesById($id);

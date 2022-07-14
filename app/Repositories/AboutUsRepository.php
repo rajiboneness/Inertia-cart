@@ -44,7 +44,6 @@ class AboutUsRepository implements AboutUsInterface
         $image->move($upload_path, $imageName);
         $uploadedImage = $imageName;
         $about->image = $upload_path.$uploadedImage;
-
         $about->save();
 
         return $about;

@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="col-sm-3">
             <div class="card home__card bg-gradient-info">
                 <div class="card-body">
@@ -28,6 +28,14 @@
                 <div class="card-body">
                     <h4>Subcategory <i class="fi fi-br-user"></i></h4>
                     <h2>{{$data->subcategory}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card home__card bg-gradient-danger">
+                <div class="card-body">
+                    <h4>No of User <i class="fi fi-br-box-alt"></i></h4>
+                    <h2>{{$data->users}}</h2>
                 </div>
             </div>
         </div>

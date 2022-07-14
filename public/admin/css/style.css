@@ -500,3 +500,10 @@ footer {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+.variation_table td, .variation_table th{
+	padding: 5px 20px;
+}
+.variation_table{
+	margin-bottom: 0;
+	margin-top: -13px;
+}

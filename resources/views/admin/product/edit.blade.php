@@ -207,5 +207,46 @@
         .catch( error => {
             console.error( error );
         });
+
+        // Auto selected
+        $('#collection_id').change(function () {
+            var id = $(this).val();
+            $('#cat_id').find('option').not(':first').remove();
+
+            // AJAX request 
+            $.ajax({
+                url: '/admin/product/getcategory/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+
+                        var options = '<option value="" selected="" hidden="">Select Category</option>';
+                        $.each(response.cat, function(key, val) {
+                            options += '<option value="' + val.id + '">' + val.name + '</option>';
+                        });
+                        $('#cat_id').empty().append(options);
+                }
+            });
+        });
+        
+        $('#cat_id').change(function () {
+            var id = $(this).val();
+            $('#sub_cat_id').find('option').not(':first').remove();
+
+            // AJAX request 
+            $.ajax({
+                url: '/admin/product/getSubcategory/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+
+                        var options = '<option value="" selected="" hidden="">Select Sub Category</option>';
+                        $.each(response.sub, function(key, val) {
+                            options += '<option value="' + val.id + '">' + val.name + '</option>';
+                        });
+                        $('#sub_cat_id').empty().append(options);
+                }
+            });
+        });
     </script>
 @endsection

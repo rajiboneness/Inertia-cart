@@ -28,12 +28,11 @@ class AboutUsController extends Controller
             "image" => "required|mimes:jpg,jpeg,png,svg,gif|max:10000000"
         ]);
         $params = $request->except('_token');
-
-        $aboutusStore = $this->AboutusRepository->createBanner($params);
+        $aboutusStore = $this->AboutusRepository->createAboutus($params);
         if($aboutusStore){
-            return redirect()->route('admin.aboutus.create');
+            return redirect()->route('admin.aboutus.index');
         }else{
-            return redirect()->route('admin.aboutus.index')->withInput($request->all());
+            return redirect()->route('admin.aboutus.create')->withInput($request->all());
         }
     }
 

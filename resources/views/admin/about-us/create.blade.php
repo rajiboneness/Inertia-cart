@@ -3,13 +3,14 @@
 @section('page', 'Create About Us')
 @section('content')
 <section>
-    <form method="post" action="{{ route('admin.aboutus.store') }}" enctype="multipart/form-data">@csrf
+    <form method="post" action="{{ route('admin.aboutus.store') }}" enctype="multipart/form-data">
+        @csrf
         <div class="row">
             <div class="col-sm-9">
                 <div class="form-group mb-3">
-                    <input type="text" name="name" placeholder="Add Product Title" class="form-control"
-                        value="{{old('name')}}">
-                    @error('name') <p class="small text-danger">{{ $message }}</p> @enderror
+                    <input type="text" name="title" placeholder="Add Title" class="form-control"
+                        value="{{old('title')}}">
+                    @error('title') <p class="small text-danger">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="card shadow-sm">

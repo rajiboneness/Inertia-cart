@@ -42,6 +42,10 @@
                         <li class="{{ ( request()->is('admin/product/list*') ) ? 'active' : '' }}"><a href="{{ route('admin.product.index') }}">All Product</a></li>
 
                         <li class="{{ ( request()->is('admin/product/create*') ) ? 'active' : '' }}"><a href="{{ route('admin.product.create') }}">Add New Product</a></li>
+
+                        <li class="{{ ( request()->is('admin/product/variation*') ) ? 'active' : '' }}"><a href="{{ route('admin.product.variation.index') }}">All Product Variation</a></li>
+
+                        <li class="{{ ( request()->is('admin/product/variation/value*') ) ? 'active' : '' }}"><a href="{{ route('admin.product.value.index') }}">All Variation Value</a></li>
                     </ul>
                 </li>
 
@@ -59,6 +63,14 @@
                         <li class="{{ ( request()->is('admin/order?status=deliver') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index', ['status'=>'4']) }}"><i class="fi fi-br-database"></i> <span>Delivered Orders</span></a></li>
 
                         <li class="{{ ( request()->is('admin/order?status=cancel') ) ? 'active' : '' }}"><a href="{{ route('admin.order.index', ['status'=>'5']) }}"><i class="fi fi-br-database"></i> <span>Cancelled Orders</span></a></li>
+                    </ul>
+                </li>
+                <li class="@if(request()->is('admin/customer*') || request()->is('admin/address*')) { {{'active'}} }  @endif">
+                    <a href="javascript: void(0)"><i class="fi fi-br-cube"></i> <span>Customer Management</span></a>
+                    <ul>
+                        <li class="{{ ( request()->is('admin/customer*') ) ? 'active' : '' }}"><a href="{{ route('admin.customer.index') }}"><i class="fi fi-br-database"></i> <span>Customer</span></a></li>
+
+                        <li class="{{ ( request()->is('admin/address*') ) ? 'active' : '' }}"><a href="{{ route('admin.address.index') }}"><i class="fi fi-br-database"></i> <span>Address</span></a></li>
                     </ul>
                 </li>
                 <li class="@if(request()->is('admin/order*')) { {{'active'}} }  @endif">

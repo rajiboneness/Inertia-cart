@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\ProductVariationValue;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -27,7 +30,8 @@ class ProductController extends Controller
         $categories = $this->productRepository->categoryList();
         $sub_categories = $this->productRepository->subCategoryList();
         $collections = $this->productRepository->collectionList();
-        return view('admin.product.create', compact('categories', 'sub_categories', 'collections'));
+        $variations = $this->productRepository->VariationTitle();
+        return view('admin.product.create', compact('categories', 'sub_categories', 'collections', 'variations'));
     }
 
     public function store(Request $request) 
@@ -46,6 +50,8 @@ class ProductController extends Controller
             // "meta_keyword" => "required",
             "image" => "required",
             "product_images" => "nullable|array",
+            "title" => "nullable|array",
+            "value" => "nullable|array",
         ]);
 
         $params = $request->except('_token');
@@ -126,10 +132,24 @@ class ProductController extends Controller
 
         return redirect()->route('admin.product.index');
     }
+    public function getCategory($id){
+        $catData = Category::orderby("name","asc")
+        ->select('id','name')
+        ->where('collection',$id)
+        ->get();
+        return response()->json(['cat' => $catData]);
+    }
 
-    // public function destroySingleImage(Request $request, $id) 
-    // {
-    //     $this->productRepository->deleteSingleImage($id);
-    //     return redirect()->back();
-    // }
+    public function getSubCategory($id){
+        $subcatData = SubCategory::orderby("name","asc")
+        ->select('id','name')
+        ->where('cat_id',$id)
+        ->get();
+        return response()->json(['sub' => $subcatData]);
+    }
+    public function getVariationValue($id){
+        $valueData = ProductVariationValue::orderby("id", "ASC")->select('id','value')->where('variation_id', $id)->get();
+        return response()->json(['value' => $valueData]);
+    }
+
 }

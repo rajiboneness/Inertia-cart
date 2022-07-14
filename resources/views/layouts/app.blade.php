@@ -51,7 +51,7 @@
 						</div>
 						<div class="col_log ms-lg-auto">
 							<ul class="coll_login"> 
-								<li><a href="tel:+{{ $mobile->link }}"><i data-feather="phone"></i><span>+91 {{ $mobile->link }}<small>call us to place an order</small></span></a></li>
+								<li><a href="tel:+9988557744"><i data-feather="phone"></i><span>+91 9988557744<small>call us to place an order</small></span></a></li>
 								<li><a href="javascript:void(0);"><i data-feather="user"></i> <span>Login / Signup</span></a></li>
 								<li class="resp_search"><a href="javascript:void(0);"><i data-feather="search"></i></a></li>
 								<li><a href="{{ route('front.cart.index') }}"><i data-feather="shopping-cart"></i><span class="order_count">02</span></a></li>
@@ -165,8 +165,8 @@
 					<div class="col-12 col-lg-3 border-lg-start">
 						<div class="f-menu">
 							<h6>Contact Us</h6>
-							<p><a href="tel:+{{ $mobile->link }}">+91 {{ $mobile->link }}</a></p>
-							<p><a href="mailto:{{ $email->link }}"><i data-feather="mail" class="me-1"></i>{{ $email->link }}</a></p>
+							{{-- <p><a href="tel:+{{ $mobile->link }}">+91 {{ $mobile->link }}</a></p> --}}
+							{{-- <p><a href="mailto:{{ $email->link }}"><i data-feather="mail" class="me-1"></i>{{ $email->link }}</a></p> --}}
 							<p class="border-top pt-3 mt-3">
 								<b>Follow us</b>
 								<span class="d-block mt-3">

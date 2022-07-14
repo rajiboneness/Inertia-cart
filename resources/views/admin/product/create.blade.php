@@ -8,7 +8,7 @@
             <div class="col-sm-9">
                 <div class="row mb-3">
                     <div class="col-sm-4">
-                        <select class="form-control" name="collection_id">
+                        <select class="form-control" name="collection_id" id="collection_id">
                             <option hidden selected>Select collection...</option>
                             @foreach ($collections as $index => $item)
                             <option value="{{$item->id}}"
@@ -19,29 +19,19 @@
                         @error('collection_id') <p class="small text-danger">{{ $message }}</p> @enderror
                     </div>
                     <div class="col-sm-4">
-                        <select class="form-control" name="cat_id">
-                            <option hidden selected>Select category...</option>
-                            @foreach ($categories as $index => $item)
-                            <option value="{{$item->id}}"
-                                {{ old('cat_id') ?? (old('cat_id') == $item->id) ? 'selected' : ''}}>{{ $item->name }}
-                            </option>
-                            @endforeach
+                        <select class="form-control" name="cat_id" id="cat_id">
+                            <option value='0'>Select Category....</option>
                         </select>
                         @error('cat_id') <p class="small text-danger">{{ $message }}</p> @enderror
                     </div>
 
                     <div class="col-sm-4">
-                        <select class="form-control" name="sub_cat_id">
-                            <option hidden selected>Select sub-category...</option>
-                            @foreach ($sub_categories as $index => $item)
-                            <option value="{{$item->id}}"
-                                {{ (old('sub_cat_id')) ?? (old('sub_cat_id') == $item->id) ? 'selected' : ''  }}>
-                                {{ $item->name }}</option>
-                            @endforeach
+                        <select class="form-control" name="sub_cat_id" id="sub_cat_id">
+                            <option value='0'>Select Sub Category....</option>
                         </select>
                         @error('sub_cat_id') <p class="small text-danger">{{ $message }}</p> @enderror
                     </div>
-                    
+
                 </div>
 
                 <div class="form-group mb-3">
@@ -170,6 +160,50 @@
                         </div>
                     </div>
                 </div>
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        Products Variation Type
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-sm" id="timePriceTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Value</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control variation_title_id" name="title[]" >
+                                                    <option hidden selected>Select Title...</option>
+                                                    @foreach ($variations as $index => $item)
+                                                    <option value="{{$item->id}}"
+                                                        {{ (old('title')) ?? (old('title') == $item->id) ? 'selected' : ''  }}>
+                                                        {{ $item->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('title') <p class="small text-danger">{{ $message }}</p> @enderror
+                                            </td>
+                                            <td>
+                                                <select class="form-control variation_value" name="value[]" >
+                                                    <option value='0'>Select Value....</option>
+                                                </select>
+                                                @error('value') <p class="small text-danger">{{ $message }}</p> @enderror
+                                            </td>
+                                            <td><a class="btn btn-sm btn-success actionTimebtn addNewTime">+</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                @error('time')<p class="text-danger">{{$message}}</p>@enderror
+                                @error('price')<p class="text-danger">{{$message}}</p>@enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-3">
                 <div class="card shadow-sm">
@@ -221,14 +255,111 @@
 @section('script')
 <script>
     ClassicEditor
-    .create( document.querySelector( '#product_des' ) )
-    .catch( error => {
-        console.error( error );
-    });
+        .create(document.querySelector('#product_des'))
+        .catch(error => {
+            console.error(error);
+        });
     ClassicEditor
-    .create( document.querySelector( '#product_short_des' ) )
-    .catch( error => {
-        console.error( error );
+        .create(document.querySelector('#product_short_des'))
+        .catch(error => {
+            console.error(error);
+        });
+
+    $(document).on('click', '.addNewTime', function () {
+        var thisClickedBtn = $(this);
+        thisClickedBtn.removeClass(['addNewTime', 'btn-success']);
+        thisClickedBtn.addClass(['removeTimePrice', 'btn-danger']).text('X');
+
+        var toAppend = `
+        <tr>
+            <td>
+                <select class="form-control variation_title_id" name="title[]" >
+                    <option hidden selected>Select Title...</option>
+                    @foreach ($variations as $index => $item)
+                    <option value="{{$item->id}}"
+                        {{ (old('title')) ?? (old('title') == $item->id) ? 'selected' : ''  }}>
+                        {{ $item->title }}</option>
+                    @endforeach
+                </select>
+                @error('title') <p class="small text-danger">{{ $message }}</p> @enderror
+            </td>
+            <td>
+                <select class="form-control variation_value" name="value[]" >
+                    <option value='0'>Select Value....</option>
+                </select>
+                @error('value') <p class="small text-danger">{{ $message }}</p> @enderror
+            </td>
+            <td><a class="btn btn-sm btn-success actionTimebtn addNewTime">+</a></td>
+        </tr>
+        `;
+
+        $('#timePriceTable tbody').append(toAppend);
     });
+
+    $(document).on('click', '.removeTimePrice', function () {
+        var thisClickedBtn = $(this);
+        thisClickedBtn.closest('tr').remove();
+    });
+
+// Auto selected
+    $('#collection_id').change(function () {
+        var id = $(this).val();
+        $('#cat_id').find('option').not(':first').remove();
+
+        // AJAX request 
+        $.ajax({
+            url: '/admin/product/getcategory/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+
+                    var options = '<option value="" selected="" hidden="">Select Category</option>';
+                    $.each(response.cat, function(key, val) {
+                        options += '<option value="' + val.id + '">' + val.name + '</option>';
+                    });
+                    $('#cat_id').empty().append(options);
+            }
+        });
+    });
+    
+    $('#cat_id').change(function () {
+        var id = $(this).val();
+        $('#sub_cat_id').find('option').not(':first').remove();
+
+        // AJAX request 
+        $.ajax({
+            url: '/admin/product/getSubcategory/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+
+                    var options = '<option value="" selected="" hidden="">Select Sub Category</option>';
+                    $.each(response.sub, function(key, val) {
+                        options += '<option value="' + val.id + '">' + val.name + '</option>';
+                    });
+                    $('#sub_cat_id').empty().append(options);
+            }
+        });
+    });
+
+
+    $(document).on('change', '.variation_title_id', function() {
+        var id = $(this).val();
+        // AJAX request 
+        $.ajax({
+            url: '/admin/product/getVariationValue/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                console.log(response)
+                var options = '<option value="" selected="" hidden="">Select Value</option>';
+                $.each(response.value, function(key, val) {
+                    options += '<option value="' + val.id + '">' + val.value + '</option>';
+                });
+                $('.variation_value').empty().append(options);
+            }
+        });
+    });
+
 </script>
 @endsection

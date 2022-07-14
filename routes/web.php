@@ -94,8 +94,26 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::post('/{id}/update', 'Admin\ProductController@update')->name('update');
             Route::get('/{id}/status', 'Admin\ProductController@status')->name('status');
             Route::get('/{id}/delete', 'Admin\ProductController@destroy')->name('delete');
+            Route::get('getcategory/{id}','Admin\ProductController@getCategory')->name('getcategory');
+            Route::get('getSubcategory/{id}','Admin\ProductController@getSubCategory')->name('getSubcategory');
+            Route::get('getVariationValue/{id}','Admin\ProductController@getVariationValue')->name('getVariationValue');
+            
+            // Product variation
+            Route::get('variation/', 'Admin\ProductVariationController@index')->name('variation.index');
+            Route::post('variation/store', 'Admin\ProductVariationController@store')->name('variation.store');
+            Route::get('variation/{id}/view', 'Admin\ProductVariationController@show')->name('variation.view');
+            Route::post('variation/{id}/update', 'Admin\ProductVariationController@update')->name('variation.update');
+            Route::get('variation/{id}/status', 'Admin\ProductVariationController@status')->name('variation.status');
+            Route::get('variation/{id}/delete', 'Admin\ProductVariationController@destroy')->name('variation.delete');
+            
+            // Product variation Value
+            Route::get('variation/value/', 'Admin\ProductVariationController@valueIndex')->name('value.index');
+            Route::post('variation/value/store', 'Admin\ProductVariationController@valueStore')->name('value.store');
+            Route::get('variation/value/{id}/view', 'Admin\ProductVariationController@valueShow')->name('value.view');
+            Route::post('variation/value/{id}/update', 'Admin\ProductVariationController@valueUpdate')->name('value.update');
+            Route::get('variation/value/{id}/status', 'Admin\ProductVariationController@valueStatus')->name('value.status');
+            Route::get('variation/value/{id}/delete', 'Admin\ProductVariationController@valueDestroy')->name('value.delete');
         });
-
         // banner
         Route::prefix('banner')->name('banner.')->group(function(){
             Route::get('/list', 'Admin\BannerController@index')->name('index');
@@ -128,6 +146,26 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/', 'Admin\OrderController@index')->name('index');
             Route::get('/{id}/view', 'Admin\OrderController@show')->name('view');
             Route::get('/{id}/status/{status}', 'Admin\OrderController@status')->name('status');
+        });
+
+        // customer
+        Route::prefix('customer')->name('customer.')->group(function() {
+            Route::get('/', 'Admin\UserController@index')->name('index');
+            Route::post('/store', 'Admin\UserController@store')->name('store');
+            Route::get('/{id}/view', 'Admin\UserController@show')->name('view');
+            Route::post('/{id}/update', 'Admin\UserController@update')->name('update');
+            Route::get('/{id}/status', 'Admin\UserController@status')->name('status');
+            Route::get('/{id}/delete', 'Admin\UserController@destroy')->name('delete');
+        });
+
+        // address
+        Route::prefix('address')->name('address.')->group(function() {
+            Route::get('/', 'Admin\AddressController@index')->name('index');
+            Route::post('/store', 'Admin\AddressController@store')->name('store');
+            Route::get('/{id}/view', 'Admin\AddressController@show')->name('view');
+            Route::post('/{id}/update', 'Admin\AddressController@update')->name('update');
+            Route::get('/{id}/status', 'Admin\AddressController@status')->name('status');
+            Route::get('/{id}/delete', 'Admin\AddressController@destroy')->name('delete');
         });
     });
 

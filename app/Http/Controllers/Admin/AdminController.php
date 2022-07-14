@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\User;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Collection;
@@ -34,7 +35,7 @@ class AdminController extends Controller
         // $data = $userRepository->listAll();
         // dd($data->count());
         $data = (object)[];
-        // $data->users = User::count();
+        $data->users = User::count();
         $data->category = Category::count();
         $data->subcategory = SubCategory::count();
         $data->collection = Collection::count();

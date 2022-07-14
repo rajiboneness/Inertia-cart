@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\ProductVariation;
+use App\Models\ProductVariationType;
 use App\Models\Collection;
 // use App\Traits\UploadAble;
 use Illuminate\Http\UploadedFile;
@@ -27,6 +29,10 @@ class ProductRepository implements ProductInterface
     {
         return Category::all();
     }
+    
+    public function VariationTitle(){
+        return ProductVariation::where('deleted_at', NULL)->get();
+    }
 
     public function subCategoryList() 
     {
@@ -40,15 +46,11 @@ class ProductRepository implements ProductInterface
     
     public function listById($id) 
     {
-        return Product::findOrFail($id);
+        return Product::where('id', $id)->with('ProductVariation')->first();
     }
 
-    // public function listBySlug($slug) 
-    // {
-    //     return Product::where('slug', $slug)->with('category', 'subCategory', 'collection', 'colorSize')->first();
-    // }
     public function ProductDetails($slug, array $request = null){
-        return Product::where('slug', $slug)->with('category', 'subCategory', 'collection', 'MoreImages')->first();
+        return Product::where('slug', $slug)->with('category', 'subCategory', 'collection', 'MoreImages', 'ProductVariation')->first();
     }
 
     // public function relatedProducts($id) 
@@ -92,7 +94,6 @@ class ProductRepository implements ProductInterface
             $image->move($upload_path, $imageName);
             $uploadedImage = $imageName;
             $newEntry->image = $upload_path.$uploadedImage;
-            // dd($newEntry);
             $newEntry->save();
 
             // multiple image upload handling
@@ -110,6 +111,22 @@ class ProductRepository implements ProductInterface
                     ];
                 }
                 if(count($multipleImageData) > 0) ProductImage::insert($multipleImageData);
+            }
+
+            if ( !empty($data['title']) && !empty($data['value']) ) {
+                $multipleVariationData = [];
+
+                foreach ($data['title'] as $TitleKey => $titleValue) {
+                    $multipleVariationData[] = [
+                        'product_id' => $newEntry->id,
+                        'title' => $titleValue,
+                    ];
+                }
+
+                foreach ($data['value'] as $valueKey => $dataValue) {
+                    $multipleVariationData[$valueKey]['value'] = $dataValue;
+                }
+                ProductVariationType::insert($multipleVariationData);
             }
 
             return $newEntry;
