@@ -52,7 +52,14 @@
 						<div class="col_log ms-lg-auto">
 							<ul class="coll_login"> 
 								<li><a href="tel:+9988557744"><i data-feather="phone"></i><span>+91 9988557744<small>call us to place an order</small></span></a></li>
-								<li><a href="javascript:void(0);"><i data-feather="user"></i> <span>Login / Signup</span></a></li>
+								<li>
+									@if(!Auth::guard('web')->check() )
+									<a href="{{ route('front.user.register') }}"><i data-feather="user"></i> <span>Login / Signup</span></a>
+									@endif
+									@if(Auth::guard('web')->check() )
+									<a href="#"><i data-feather="user"></i> <span>{{ Auth::guard('web')->user()->fname }}</span></a>
+									@endif
+								</li>
 								<li class="resp_search"><a href="javascript:void(0);"><i data-feather="search"></i></a></li>
 								<li><a href="{{ route('front.cart.index') }}"><i data-feather="shopping-cart"></i><span class="order_count">02</span></a></li>
 

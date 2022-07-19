@@ -224,7 +224,7 @@
                                     </div>
                                 </div>
 
-                                <a href="#addColorModal" data-bs-toggle="modal" class="btn btn-sm btn-success">Add
+                                <a href="#addVariationModal" data-bs-toggle="modal" class="btn btn-sm btn-success">Add
                                     Variation</a>
                             </content>
                         </div>
@@ -237,8 +237,6 @@
                             $getTitleId = \App\Models\ProductVariation::select('id')->where('title', $productVariationGroupVal->title)->get();
                         @endphp
                             @foreach ($getTitleId as $item)
-                                
-                            {{ $item->id}}
                                 <div class="admin__content">
                                     <content>
                                         <div class="row">
@@ -250,39 +248,42 @@
                                             <div class="col-sm">
                                                 <div class="row">
                                                     <div class="col-sm-11">
-                                                        <form action="#" class="sizeUpload row g-3" method="post">
+                                                        <form action="{{ route('admin.product.variationtype.add') }}" method="post">
                                                             @csrf
-                                                            <div class="col-sm">
-                                                                <select name="size" class="form-control">
-                                                                    <option value="" selected>Select...</option>
-                                                                    {{-- @php
-                                                                        $Value = \App\Models\ProductVariationValue::where()->get();
-                                                                        foreach ($sizes as $key => $value) {
-                                                                            echo '<option value="'.$value->id.'">'.$value->name.'</option>';
-                                                                        }
-                                                                    @endphp --}}
-                                                                </select>
-                                                            </div>
-                                                            {{-- <input type="hidden" name="product_id" value="{{$id}}">
-                                                            <input type="hidden" name="color_id" value="{{$productColorGroupVal->color}}"> --}}
-                                                            {{-- <input type="hidden" name="_token" value="{{csrf_token()}}"> --}}
-                                                            <div class="col-sm-auto">
-                                                                <button type="submit" class="btn btn-sm btn-success">+ Add Value</button>
+                                                            <div class="row">
+                                                                <div class="col-sm">
+                                                                    <select name="value" class="form-control">
+                                                                        <option value="" selected>Select Value..</option>
+                                                                        @php
+                                                                            $variationValueData = \App\Models\ProductVariationValue::where('variation_id', $item->id)->get();
+                                                                            foreach ($variationValueData as $key => $value) {
+                                                                                echo '<option value="'.$value->value.'">'.$value->value.'</option>';
+                                                                            }
+                                                                        @endphp
+                                                                    </select>
+                                                                    @error('value') <p class="small text-danger">{{ $message }}</p> @enderror
+                                                                </div>
+                                                                <input type="hidden" name="product_id" value="{{$data->id}}">
+                                                                <input type="hidden" name="title" value="{{$productVariationGroupVal->title}}">
+                                                                <div class="col-sm-auto">
+                                                                    <button type="submit" class="btn btn-sm btn-success">+ Add Value</button>
+                                                                </div>
                                                             </div>
                                                         </form>
 
-                                                        {{-- @php
-                                                            $productVariationColorSizes = \App\Models\ProductColorSize::where('product_id', $id)->where('color', $productColorGroupVal->color)->get();
+                                                        @php
+                                                            $productVariationtype = \App\Models\ProductVariationType::where('product_id', $data->id)->where('title',$productVariationGroupVal->title)->get();
 
-                                                            $prodSizesDIsplay = '';
-                                                            foreach($productVariationColorSizes as $productSizeKey => $productSizeVal) {
-                                                                $sizeName = $productSizeVal->sizeDetails ? $productSizeVal->sizeDetails->name : '<span class="text-danger" title="Please delete this & add again">SIZE MISMATCH</span>';
+                                                            $prodValueDIsplay = '';
+                                                            foreach($productVariationtype as $productVariationKey => $productVariationValue) {
+                                                                $VariationValue = $productVariationValue->value ? $productVariationValue->value : 'Na';
 
-                                                                $prodSizesDIsplay .= '<div class="size_holder"><div class="row align-items-center"><div class="col-sm">'.$sizeName.'</div><div class="col-sm-3">Price Rs '.$productSizeVal->price.'</div><div class="col-sm-3">Offer Rs '.$productSizeVal->offer_price.'</div><div class="col-sm-auto"><a href='.route('admin.product.variation.size.delete', $productSizeVal->id).' class="btn btn-sm btn-outline-danger">Delete size</a></div></div></div>';
+                                                                $prodValueDIsplay .= '<div class="size_holder my-2"><div class="row align-items-center"><div class="col-sm">'.$VariationValue.'</div><div class="col-sm-auto"><a href='.route('admin.product.variationtype.delete', $productVariationValue->id ).' class="btn btn-sm btn-outline-danger">Delete Value</a></div></div></div>';
                                                             }
-                                                            $prodSizesDIsplay .= '';
+                                                            // .route('admin.product.variation.size.delete', $productSizeVal->id).
+                                                            $prodValueDIsplay .= '';
                                                         @endphp
-                                                        {!!$prodSizesDIsplay!!} --}}
+                                                        {!!$prodValueDIsplay!!}
                                                     </div>
                                                 </div>
 
@@ -305,7 +306,7 @@
 
 {{-- modal --}}
 
-    <div class="modal fade" tabindex="-1" id="addColorModal">
+    <div class="modal fade" tabindex="-1" id="addVariationModal">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">

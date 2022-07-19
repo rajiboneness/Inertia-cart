@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <aside class="side__bar shadow-sm">
         <div class="admin__logo">
             <div class="logo">

@@ -32,9 +32,6 @@ class UserRepository implements UserInterface
 
     public function create(array $data) 
     {
-        // DB::beginTransaction();
-
-        // try {
             $collectedData = collect($data);
 
             $full_name = '';
@@ -52,25 +49,21 @@ class UserRepository implements UserInterface
             $newEntry->password = Hash::make($collectedData['password']);
 
              // Profile Image
-             $upload_path = "uploads/User/";
-             $image = $collectedData['image'];
-             $imageName = time().".".$image->getClientOriginalName();
-             $image->move($upload_path, $imageName);
-             $uploadedImage = $imageName;
-             $newEntry->image = $upload_path.$uploadedImage;
-
+             
+             if(isset($collectedData['image'])){
+                $image = $collectedData['image'];
+                $upload_path = "uploads/User/";
+                $imageName = time().".".$image->getClientOriginalName();
+                $image->move($upload_path, $imageName);
+                $uploadedImage = $imageName;
+                $newEntry->image = $upload_path.$uploadedImage;
+             }
             $newEntry->save();
 
 
             DB::commit();
 
             return true;
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-
-        //     DB::rollback();
-        //     return false;
-        // }
     }
 
     public function update($id, array $newDetails) 

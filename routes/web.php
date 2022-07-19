@@ -18,6 +18,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Website
 Route::name('front.')->group(function(){
+
+    // User Login & Registration - guard
+    Route::middleware(['guest:web'])->group(function () {
+        Route::prefix('user/')->name('user.')->group(function () {
+            Route::get('/register', 'Front\UserController@register')->name('register');
+            Route::post('/create', 'Front\UserController@create')->name('create');
+            Route::get('/login', 'Front\UserController@login')->name('login');
+            Route::post('/check', 'Front\UserController@check')->name('check');
+        });
+    });
+
     Route::get('/', 'Front\FrontController@index')->name('home');
 
     // Product details
@@ -42,6 +53,7 @@ Route::name('front.')->group(function(){
     // Route::
 });
 
+ 
 Auth::routes();
 
 // Admin  Guard
@@ -98,6 +110,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('getSubcategory/{id}','Admin\ProductController@getSubCategory')->name('getSubcategory');
             Route::get('getVariationValue/{id}','Admin\ProductController@getVariationValue')->name('getVariationValue');
             Route::post('add-variation', 'Admin\ProductController@VariationAdd')->name('add-variation');
+            // Product Variation Type 
+            Route::post('variation/type', 'Admin\ProductController@SingleVariationTypeAdd')->name('variationtype.add');
+            Route::get('variation/delete/{id}', 'Admin\ProductController@SingleVariationTypeDelete')->name('variationtype.delete');
             
             // Product variation
             Route::get('variation/', 'Admin\ProductVariationController@index')->name('variation.index');

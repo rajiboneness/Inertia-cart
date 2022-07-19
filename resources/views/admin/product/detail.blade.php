@@ -42,7 +42,7 @@
                             <hr>
                             <div class="d-flex">
                                 @foreach($data->ProductVariation as $variantKey => $variantValue)
-                                    <a href="#" data-bs-target="#VariationModal{{$variantValue->title}}" data-bs-toggle="modal">    
+                                    <a href="#" data-bs-target="#VariationModal{{$variantValue->id}}" data-bs-toggle="modal">    
                                         <div
                                             style="text-align:center margin-right: 20px;">
                                             <div class="btn btn-sm" style="background-color: #87CEEB;margin-right: 20px;">
@@ -52,7 +52,7 @@
                                     </a>
 
                                     {{--  modal --}}
-                                        <div class="modal fade" id="VariationModal{{$variantValue->title}}">
+                                        <div class="modal fade" id="VariationModal{{$variantValue->id}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

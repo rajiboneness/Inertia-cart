@@ -9,23 +9,22 @@
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
 
-    <title>Inertia Cart | admin panel</title>
+    <title>Inertia Cart | User panel</title>
   </head>
   <body>
     <main class="login">
       <div class="login__left">
-        <img src="{{ asset('admin/images/corporate_gifts.jpg') }}">
+        <img src="{{ asset('admin/images/awards.jpg') }}">
       </div>
       <div class="login__right">
         <div class="login__block">
           <div class="logo__block">
             <img src="{{ asset('/img/logo.png') }}">
           </div>
-
           @if (Session::get('success'))<div class="alert alert-success">{{ Session::get('success') }}</div>@endif
           @if (Session::get('failure'))<div class="alert alert-danger">{{ Session::get('failure') }}</div>@endif
 
-          <form method="POST" action="{{ route('admin.login.check') }}">
+          <form method="POST" action="{{ route('front.user.check') }}">
           @csrf
             <div class="form-floating mb-3">
               <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="floatingInput" placeholder="name@example.com">
@@ -60,7 +59,8 @@
 
           <div class="row mt-3">
               <div class="col-12 text-center">
-                <a href="{{ url('/') }}">Back to homepage</a>
+                <a href="{{ url('/') }}">Back to home</a>
+                <a href="{{route('front.user.login') }}">New User ?</a>
               </div>
             </div>
         </div>

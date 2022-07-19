@@ -12,7 +12,9 @@ use App\Models\ProductVariation;
 use App\Models\ProductVariationType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
+
 
 class ProductController extends Controller
 {
@@ -63,6 +65,27 @@ class ProductController extends Controller
         } else {
             return redirect()->route('admin.product.create')->withInput($request->all());
         }
+    }
+    public function SingleVariationTypeAdd(Request $request){
+        $fetchType = ProductVariationType::select('value')->where('value', $request->value)->where('product_id', $request->product_id)->first();
+        if ($fetchType) {
+            Alert::success('Success Title', 'Success Message');
+            return redirect()->back();
+        } else {
+            $params = $request->except('_token');
+            $data = $this->productRepository->SVTypeAdd($params);
+            if ($data) {
+                return redirect()->back();
+            } else {
+                return redirect()->back()->withInput($request->all());
+            }
+        }
+        
+    }
+    public function SingleVariationTypeDelete(Request $request, $id){
+        $this->productRepository->SVTypeDelete($id);
+        return redirect()->back();
+        
     }
     public function VariationAdd(Request $request){
 

@@ -34,12 +34,22 @@ class ProductRepository implements ProductInterface
     public function VariationValue(){
         return ProductVariationValue::where('deleted_at', NULL)->orderBy('value')->get();
     }
+    public function SVTypeAdd(array $data){
+        $collectedData = collect($data);
+        $newEntry = new ProductVariationType;
+        $newEntry->product_id = $collectedData['product_id'];
+        $newEntry->title = $collectedData['title'];
+        $newEntry->value = $collectedData['value'];
+        $newEntry->save();
+        return $newEntry;
+    }
+    
 
     public function collectionList() 
     {
         return Collection::all();
     }
-    
+
     public function listById($id) 
     {
         return Product::where('id', $id)->with('ProductVariation')->first();
@@ -212,6 +222,14 @@ class ProductRepository implements ProductInterface
     public function delete($id) 
     {
         $data = Product::findOrFail($id);
+        if($data){
+            $data->delete();
+            return $data;
+        }
+    }
+    public function SVTypeDelete($id) 
+    {
+        $data = ProductVariationType::findOrFail($id);
         if($data){
             $data->delete();
             return $data;

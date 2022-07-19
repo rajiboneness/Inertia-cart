@@ -50,62 +50,33 @@
                             <li>
                                {!! $data->short_desc !!}
                             </li>
-                            <li>
-                               {!! $data->short_desc !!}
-                            </li>
-                            {{-- <li>
-                                You can select landscape or portrait, printing one side or two. A few clicks and you're done.
-                            </li>
-                            <li>
-                                100 3.5 x 2 in business cards printed both sides using recommended specifications including express production for only 168.00
-                            </li> --}}
                         </ul>
                         <h6 class="mt-lg-4">Same-Day Delivery for orders placed before 3 pm.</h6>
                         <form class="row m-0 ">
+                            @foreach($data->ProductVariation as $ProductVariationKey => $ProductVariationvalue)
                             <div class="col-12 col-lg-6 col-sm-6 plr">
-                                <label>Paper Type</label>
+                                @php
+                                    $getVariationValue = \App\Models\ProductVariationType::select('id','value')->where('title', $ProductVariationvalue->title)->where('product_id', $data->id)->orderBy('value', 'ASC')->get();
+                                @endphp
+                                <label>{{ $ProductVariationvalue->title }}</label>
                                 <select class="form-select">
-                                    <option>Standard Cards</option>
-                                    <option>Textured Cards</option>
-                                    <option>Metallic Cards</option>
+                                    @foreach($getVariationValue as $getVariationValueKey =>$getVariationValueData)
+                                        <option value="{{ $getVariationValueData->id }}">{{ $getVariationValueData->value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <div class="col-12 col-lg-6 col-sm-6 plr">
-                                <label>Materials</label>
-                                <select class="form-select">
-                                    <option>Lykam matt paper - 300gsm</option>
-                                    <option>Lykam Gloss paper - 300gsm</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-lg-6 col-sm-6 plr">
-                                <label>Orientation</label>
-                                <select class="form-select">
-                                    <option>Portrait</option>
-                                    <option>Landscape</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-lg-6 col-sm-6 plr">
-                                <label>Printing Location</label>
-                                <select class="form-select">
-                                    <option>Front</option>
-                                    <option>Back</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-lg-6 col-sm-6 plr">
-                                <label>Quantity</label>
-                                <select class="form-select">
-                                    <option>100</option>
-                                    <option>150</option>
-                                    <option>200</option>
-                                    <option>250</option>
-                                </select>
-                            </div>
+                            @endforeach
                             <div class="col-12 col-lg-6 col-sm-6 plr">
                                 <label>Pincode</label>
                                 <input class="form-control" type="text" placeholder="Pincode">
                             </div>
                             <div class="cart_btnsec">
-                                <h4>₹{{ sprintf("%02.2f", $data->offer_price) }}<small>inclusive of all taxes</small><span>for 100 Qty (₹9.44 / piece)</span></h4>
+                                <h4>₹{{ sprintf("%02.2f", $data->offer_price) }}<small>inclusive of all taxes</small>
+                                    <span>for 
+                                    
+                                        {{ $getVariationValueData->value }} 
+                                    
+                                    Qty (₹9.44 / piece)</span></h4>
                                 <button class="btn cart_btn">Design Your Product <i data-feather="arrow-right"></i></button>
                             </div>
                         </form>
