@@ -178,7 +178,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <select class="form-control variation_title_id" name="title[]" >
+                                                <select class="form-control" name="title[]" >
                                                     <option hidden selected>Select Title...</option>
                                                     @foreach ($variations as $index => $item)
                                                     <option value="{{$item->id}}"
@@ -190,7 +190,12 @@
                                             </td>
                                             <td>
                                                 <select class="form-control variation_value" name="value[]" >
-                                                    <option value='0'>Select Value....</option>
+                                                    <option hidden selected>Select Value...</option>
+                                                    @foreach ($variationValue as $index => $data)
+                                                    <option value="{{$data->id}}"
+                                                        {{ (old('value')) ?? (old('value') == $data->id) ? 'selected' : ''  }}>
+                                                        {{ $data->value }}</option>
+                                                    @endforeach
                                                 </select>
                                                 @error('value') <p class="small text-danger">{{ $message }}</p> @enderror
                                             </td>
@@ -273,7 +278,7 @@
         var toAppend = `
         <tr>
             <td>
-                <select class="form-control variation_title_id" name="title[]" >
+                <select class="form-control" name="title[]" >
                     <option hidden selected>Select Title...</option>
                     @foreach ($variations as $index => $item)
                     <option value="{{$item->id}}"
@@ -285,7 +290,12 @@
             </td>
             <td>
                 <select class="form-control variation_value" name="value[]" >
-                    <option value='0'>Select Value....</option>
+                    <option hidden selected>Select Value...</option>
+                    @foreach ($variationValue as $index => $data)
+                    <option value="{{$data->id}}"
+                        {{ (old('value')) ?? (old('value') == $data->id) ? 'selected' : ''  }}>
+                        {{ $data->value }}</option>
+                    @endforeach
                 </select>
                 @error('value') <p class="small text-danger">{{ $message }}</p> @enderror
             </td>
@@ -338,25 +348,6 @@
                         options += '<option value="' + val.id + '">' + val.name + '</option>';
                     });
                     $('#sub_cat_id').empty().append(options);
-            }
-        });
-    });
-
-
-    $(document).on('change', '.variation_title_id', function() {
-        var id = $(this).val();
-        // AJAX request 
-        $.ajax({
-            url: '/admin/product/getVariationValue/' + id,
-            type: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                console.log(response)
-                var options = '<option value="" selected="" hidden="">Select Value</option>';
-                $.each(response.value, function(key, val) {
-                    options += '<option value="' + val.id + '">' + val.value + '</option>';
-                });
-                $('.variation_value').empty().append(options);
             }
         });
     });

@@ -35,7 +35,7 @@
             <div class="card home__card bg-gradient-danger">
                 <div class="card-body">
                     <h4>No of User <i class="fi fi-br-box-alt"></i></h4>
-                    <h2>{{$data->users}}</h2>
+                    <h2>{{$data->users->count()}}</h2>
                 </div>
             </div>
         </div>
@@ -85,38 +85,37 @@
                 </tbody>
             </table>
         </div>
-        {{-- <div class="col-sm-6">
-            <h5>Recent orders</h5>
+        <div class="col-sm-6">
+            <h5>Users List</h5>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Date</th>
-                        <th>Amount</th>
+                        <th><i class="fi fi-br-picture"></i></th>
+                        <th>Name</th>
+                        <th>Mobile</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data->orders as $order)
-                        @php
-                            switch($order->status) {
-                                case 1:$status = 'New';break;
-                                case 2:$status = 'Confirmed';break;
-                                case 3:$status = 'Shipped';break;
-                                case 4:$status = 'Delivered';break;
-                                case 5:$status = 'Cancelled';break;
-                            }
-                        @endphp
+                    @foreach ($data->users as $user)
                         <tr>
-                            <td><a href="{{ route('admin.order.view', $order->id) }}">#{{$order->order_no}}</a></td>
-                            <td>{{date('j M Y g:i A', strtotime($order->created_at))}}</td>
-                            <td>Rs {{$order->final_amount}}</td>
-                            <td><span class="badge bg-info">{{ $status }}</span></td>
+                            <td class="text-center column-thumb">
+                                <img src="{{asset($user->image)}}">
+                            </td>
+                            <td>
+                                <p style="height: 42px;overflow: hidden;text-overflow: ellipsis;margin-bottom: 0;">{{$user->name}}</p>
+                                <div class="row__action">
+                                    <a href="{{ route('admin.customer.view', $user->id) }}">Edit</a>
+                                    <a href="{{ route('admin.customer.view', $user->id) }}">View</a>
+                                </div>
+                            </td>
+                            <td>{{ $user->email }} <br> {{$user->mobile}}</td>
+                            <td><span class="badge bg-{{($user->status == 1) ? 'success' : 'danger'}}">{{($user->status == 1) ? 'Active' : 'Inactive'}}</span></td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div> --}}
+        </div>
     </div>
 </section>
 @endsection

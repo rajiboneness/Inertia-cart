@@ -97,6 +97,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('getcategory/{id}','Admin\ProductController@getCategory')->name('getcategory');
             Route::get('getSubcategory/{id}','Admin\ProductController@getSubCategory')->name('getSubcategory');
             Route::get('getVariationValue/{id}','Admin\ProductController@getVariationValue')->name('getVariationValue');
+            Route::post('add-variation', 'Admin\ProductController@VariationAdd')->name('add-variation');
             
             // Product variation
             Route::get('variation/', 'Admin\ProductVariationController@index')->name('variation.index');

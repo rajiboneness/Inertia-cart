@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\ProductVariationValue;
+use App\Models\ProductVariation;
+use App\Models\ProductVariationType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -27,11 +29,10 @@ class ProductController extends Controller
 
     public function create(Request $request) 
     {
-        $categories = $this->productRepository->categoryList();
-        $sub_categories = $this->productRepository->subCategoryList();
         $collections = $this->productRepository->collectionList();
         $variations = $this->productRepository->VariationTitle();
-        return view('admin.product.create', compact('categories', 'sub_categories', 'collections', 'variations'));
+        $variationValue = $this->productRepository->VariationValue();
+        return view('admin.product.create', compact('collections', 'variations', 'variationValue'));
     }
 
     public function store(Request $request) 
@@ -63,6 +64,23 @@ class ProductController extends Controller
             return redirect()->route('admin.product.create')->withInput($request->all());
         }
     }
+    public function VariationAdd(Request $request){
+
+        $request->validate([
+            'title' => 'required',
+            'value' => 'required',
+        ]);
+        $variationTitle = ProductVariation::where('id', $request->title)->first();
+        $variationValue = ProductVariationValue::where('id', $request->value)->first();
+
+        $ProductVariation = new ProductVariationType();
+        $ProductVariation->product_id = $request->product_id;
+        $ProductVariation->title = $variationTitle->title;
+        $ProductVariation->value = $variationValue->value;
+        $ProductVariation->save();
+
+        return redirect()->back();
+    }
 
     public function show(Request $request, $id)
     {
@@ -73,12 +91,14 @@ class ProductController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $categories = $this->productRepository->categoryList();
-        $sub_categories = $this->productRepository->subCategoryList();
+        $product = Product::findOrFail($id);
+        $categories = Category::select('name', 'id')->where('id', $product->cat_id)->first();
+        $subcategories = SubCategory::select('name', 'id')->where('id', $product->sub_cat_id)->first();
         $collections = $this->productRepository->collectionList();
+        $variations = $this->productRepository->VariationTitle();
         $data = $this->productRepository->listById($id);
-        // $images = $this->productRepository->listImagesById($id);
-        return view('admin.product.edit', compact('data', 'categories', 'sub_categories', 'collections'));
+        $productVariationGroup = ProductVariationType::select('id', 'title', 'status', 'value')->where('product_id', $id)->groupBy('title')->orderBy('id')->get();
+        return view('admin.product.edit', compact('data', 'categories', 'collections', 'subcategories', 'variations', 'productVariationGroup'));
     }
 
     public function update(Request $request, $id)
@@ -132,6 +152,7 @@ class ProductController extends Controller
 
         return redirect()->route('admin.product.index');
     }
+
     public function getCategory($id){
         $catData = Category::orderby("name","asc")
         ->select('id','name')
@@ -147,9 +168,14 @@ class ProductController extends Controller
         ->get();
         return response()->json(['sub' => $subcatData]);
     }
+
     public function getVariationValue($id){
-        $valueData = ProductVariationValue::orderby("id", "ASC")->select('id','value')->where('variation_id', $id)->get();
-        return response()->json(['value' => $valueData]);
+        $variationValue = ProductVariationValue::orderBy('value', 'asc')
+        ->select('id', 'value')
+        ->where('variation_id', $id)
+        ->get();
+        return response()->json(['value' => $variationValue]);
     }
+    
 
 }

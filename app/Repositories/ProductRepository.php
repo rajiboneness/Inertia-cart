@@ -8,6 +8,7 @@ use App\Models\ProductImage;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\ProductVariation;
+use App\Models\ProductVariationValue;
 use App\Models\ProductVariationType;
 use App\Models\Collection;
 // use App\Traits\UploadAble;
@@ -22,21 +23,16 @@ class ProductRepository implements ProductInterface
 
     public function listAll() 
     {
-        return Product::all();
+        return Product::orderBy('id','DESC')->get();
     }
 
-    public function categoryList() 
-    {
-        return Category::all();
-    }
     
     public function VariationTitle(){
-        return ProductVariation::where('deleted_at', NULL)->get();
+        return ProductVariation::where('deleted_at', NULL)->orderBy('title')->get();
     }
 
-    public function subCategoryList() 
-    {
-        return SubCategory::all();
+    public function VariationValue(){
+        return ProductVariationValue::where('deleted_at', NULL)->orderBy('value')->get();
     }
 
     public function collectionList() 
@@ -131,6 +127,7 @@ class ProductRepository implements ProductInterface
 
             return $newEntry;
     }
+    
 
     public function update($id, array $newDetails) 
     {

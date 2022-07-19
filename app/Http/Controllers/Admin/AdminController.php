@@ -35,7 +35,7 @@ class AdminController extends Controller
         // $data = $userRepository->listAll();
         // dd($data->count());
         $data = (object)[];
-        $data->users = User::count();
+        $data->users = User::latest('id')->limit(5)->get();
         $data->category = Category::count();
         $data->subcategory = SubCategory::count();
         $data->collection = Collection::count();

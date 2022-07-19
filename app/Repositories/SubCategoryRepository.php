@@ -19,7 +19,7 @@ class SubCategoryRepository implements SubcategoryInterface
 
     public function getAllCategories() 
     {
-        return Category::all();
+        return Category::orderBy('name','ASC')->get();
     }
 
     public function getSubcategoryById($subcategoryId) 

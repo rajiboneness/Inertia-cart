@@ -18,7 +18,7 @@ class CategoryRepository implements CategoryInterface
         return Category::all();
     }
     public function getAllCollections(){
-        return Collection::all();
+        return Collection::orderBy('name','ASC')->get();
     }
     
     public function getCategoryById($categoryId) 
